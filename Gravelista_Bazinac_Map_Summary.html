@@ -286,6 +286,100 @@
       margin-top: 0.3rem;
     }
 
+    /* Collapsible comparison columns */
+    body.hide-petr-visual .col-petr-visual { display: none !important; }
+    body.hide-orig-visual .col-orig-visual { display: none !important; }
+    body.hide-petr-width .col-petr-width { display: none !important; }
+    body.hide-orig-width .col-orig-width { display: none !important; }
+
+    .table-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem 1rem;
+      background: rgba(10, 15, 12, 0.75);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 0.85rem 1.15rem;
+      margin: 1.25rem 0 1.75rem 0;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    }
+
+    .controls-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .toggle-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .chip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      user-select: none;
+    }
+
+    .chip-btn:hover {
+      background: rgba(255, 255, 255, 0.09);
+      color: var(--text);
+    }
+
+    .chip-btn.active {
+      background: rgba(52, 211, 153, 0.15);
+      border-color: rgba(52, 211, 153, 0.45);
+      color: var(--forest-green);
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4b5563;
+      transition: all 0.2s ease;
+    }
+
+    .chip-btn.active .chip-dot {
+      background: var(--forest-green);
+      box-shadow: 0 0 6px rgba(52, 211, 153, 0.8);
+    }
+
+    .controls-divider {
+      width: 1px;
+      height: 18px;
+      background: var(--card-border);
+      margin: 0 0.2rem;
+    }
+
+    .chip-action {
+      background: transparent;
+      border-color: transparent;
+      color: var(--trail-sand);
+      padding: 0.35rem 0.5rem;
+    }
+
+    .chip-action:hover {
+      color: #ffffff;
+      background: rgba(212, 163, 115, 0.15);
+    }
+
     /* Table Styles */
     .table-container {
       overflow-x: auto;
@@ -585,6 +679,45 @@
       <p class="lang-cs">Srovnání rozměrů linií napříč dostupnými styly TYP:</p>
       <p class="lang-en">Comparison of line dimensions across available TYP stylesheets:</p>
 
+      <!-- Interactive Column Visibility Controls -->
+      <div class="table-controls">
+        <div class="controls-title">
+          <span class="lang-cs">👁️ Sloupce srovnání:</span>
+          <span class="lang-en">👁️ Comparison Columns:</span>
+        </div>
+        <div class="toggle-chips">
+          <button class="chip-btn active" id="toggle-petr-visual" onclick="toggleColumn('col-petr-visual')" title="Petr V5 Visual">
+            <span class="chip-dot"></span>
+            <span class="lang-cs">Vizuál Petr V5</span>
+            <span class="lang-en">Petr V5 Visual</span>
+          </button>
+          <button class="chip-btn active" id="toggle-orig-visual" onclick="toggleColumn('col-orig-visual')" title="Original Visual">
+            <span class="chip-dot"></span>
+            <span class="lang-cs">Vizuál Originál</span>
+            <span class="lang-en">Original Visual</span>
+          </button>
+          <button class="chip-btn active" id="toggle-petr-width" onclick="toggleColumn('col-petr-width')" title="Petr V5 Width">
+            <span class="chip-dot"></span>
+            <span class="lang-cs">Šířka Petr V5</span>
+            <span class="lang-en">Petr V5 Width</span>
+          </button>
+          <button class="chip-btn active" id="toggle-orig-width" onclick="toggleColumn('col-orig-width')" title="Original Width">
+            <span class="chip-dot"></span>
+            <span class="lang-cs">Šířka Originál</span>
+            <span class="lang-en">Original Width</span>
+          </button>
+          <span class="controls-divider"></span>
+          <button class="chip-btn chip-action" onclick="toggleAllComparison(false)">
+            <span class="lang-cs">Skrýt vše</span>
+            <span class="lang-en">Hide All</span>
+          </button>
+          <button class="chip-btn chip-action" onclick="toggleAllComparison(true)">
+            <span class="lang-cs">Zobrazit vše</span>
+            <span class="lang-en">Show All</span>
+          </button>
+        </div>
+      </div>
+
       <!-- 1. Cycling Infrastructure -->
       <h3>
         <span class="lang-cs">🚴 1. Cyklistická infrastruktura</span>
@@ -606,11 +739,11 @@
                 <span class="lang-cs">Vizuál Bazinac</span>
                 <span class="lang-en">Bazinac Visual</span>
               </th>
-              <th>
+              <th class="col-petr-visual">
                 <span class="lang-cs">Vizuál Petr V5</span>
                 <span class="lang-en">Petr V5 Visual</span>
               </th>
-              <th>
+              <th class="col-orig-visual">
                 <span class="lang-cs">Vizuál Originál</span>
                 <span class="lang-en">Original Visual</span>
               </th>
@@ -618,8 +751,8 @@
                 <span class="lang-cs">Bazinac Mod v1 (Aktivní)</span>
                 <span class="lang-en">Bazinac Mod v1 (Active)</span>
               </th>
-              <th>Petr V5</th>
-              <th>
+              <th class="col-petr-width">Petr V5</th>
+              <th class="col-orig-width">
                 <span class="lang-cs">Původní Gravelista</span>
                 <span class="lang-en">Original Gravelista</span>
               </th>
@@ -637,16 +770,16 @@
                 <span class="lang-en">Dedicated Cycleway</span>
               </td>
               <td><span class="preview-bar" style="height: 7px; background: #b400ff;"></span></td>
-              <td><span class="preview-bar" style="height: 7px; background: #b400ff;"></span></td>
-              <td><span class="preview-bar" style="height: 2px; background: #b400ff;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 7px; background: #b400ff;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 2px; background: #b400ff;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">7 px plná</span>
                   <span class="lang-en">7 px solid</span>
                 </span>
               </td>
-              <td>7 px solid</td>
-              <td><span class="val-orig">2 px</span></td>
+              <td class="col-petr-width">7 px solid</td>
+              <td class="col-orig-width"><span class="val-orig">2 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF</span></td>
             </tr>
             <tr>
@@ -656,11 +789,11 @@
                 <span class="lang-en">Bike Path</span>
               </td>
               <td><span class="preview-bar" style="height: 6px; background: #b400ff; border: 1px solid #70009f;"></span></td>
-              <td><span class="preview-bar" style="height: 6px; background: #b400ff; border: 1px solid #70009f;"></span></td>
-              <td><span class="preview-bar" style="height: 4px; background: #b400ff; border: 1px solid #70009f;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 6px; background: #b400ff; border: 1px solid #70009f;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 4px; background: #b400ff; border: 1px solid #70009f;"></span></td>
               <td><span class="highlight-active">6 px (4+1+1)</span></td>
-              <td><span class="val-petr">6 px (4+1+1)</span></td>
-              <td><span class="val-orig">4 px</span></td>
+              <td class="col-petr-width"><span class="val-petr">6 px (4+1+1)</span></td>
+              <td class="col-orig-width"><span class="val-orig">4 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF / #70009F</span></td>
             </tr>
             <tr>
@@ -670,16 +803,16 @@
                 <span class="lang-en">Unpaved Bikepath</span>
               </td>
               <td><span class="preview-bar" style="height: 6px; border-top: 2px dashed #b400ff; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 6px; border-top: 2px dashed #b400ff; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 4px; border-top: 1px dashed #b400ff; border-bottom: 1px dashed #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 6px; border-top: 2px dashed #b400ff; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 4px; border-top: 1px dashed #b400ff; border-bottom: 1px dashed #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">6 px čárkovaná</span>
                   <span class="lang-en">6 px dashed</span>
                 </span>
               </td>
-              <td>6 px dashed</td>
-              <td><span class="val-orig">4 px</span></td>
+              <td class="col-petr-width">6 px dashed</td>
+              <td class="col-orig-width"><span class="val-orig">4 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF / #5D7D88</span></td>
             </tr>
             <tr>
@@ -689,16 +822,16 @@
                 <span class="lang-en">Bikepath (compacted)</span>
               </td>
               <td><span class="preview-bar" style="height: 6px; border-top: 2px dashed #b400ff; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 6px; border-top: 2px dashed #b400ff; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 4px; border-top: 1px dashed #b400ff; border-bottom: 1px dashed #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 6px; border-top: 2px dashed #b400ff; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 4px; border-top: 1px dashed #b400ff; border-bottom: 1px dashed #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">6 px čárkovaná</span>
                   <span class="lang-en">6 px dashed</span>
                 </span>
               </td>
-              <td>6 px dashed</td>
-              <td><span class="val-orig">4 px</span></td>
+              <td class="col-petr-width">6 px dashed</td>
+              <td class="col-orig-width"><span class="val-orig">4 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF / #5D7D88</span></td>
             </tr>
             <tr>
@@ -708,11 +841,11 @@
                 <span class="lang-en">Cyclestreet</span>
               </td>
               <td><span class="preview-bar" style="height: 7px; background: #b400ff;"></span></td>
-              <td><span class="preview-bar" style="height: 7px; background: #b400ff;"></span></td>
-              <td><span class="preview-bar" style="height: 5px; background: #b400ff;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 7px; background: #b400ff;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 5px; background: #b400ff;"></span></td>
               <td><span class="highlight-active">7 px</span></td>
-              <td><span class="val-petr">7 px</span></td>
-              <td><span class="val-orig">5 px</span></td>
+              <td class="col-petr-width"><span class="val-petr">7 px</span></td>
+              <td class="col-orig-width"><span class="val-orig">5 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF</span></td>
             </tr>
             <tr>
@@ -722,16 +855,16 @@
                 <span class="lang-en">Paved road (cycling allowed)</span>
               </td>
               <td><span class="preview-bar" style="height: 4px; background: #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 2px; background: #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 2px; background: #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">4 px plná</span>
                   <span class="lang-en">4 px solid</span>
                 </span>
               </td>
-              <td>3 px solid</td>
-              <td><span class="val-orig">2 px</span></td>
+              <td class="col-petr-width">3 px solid</td>
+              <td class="col-orig-width"><span class="val-orig">2 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
             </tr>
             <tr>
@@ -741,11 +874,11 @@
                 <span class="lang-en">Road with Bikelane</span>
               </td>
               <td><span class="preview-bar" style="height: 8px; background: #b400ff;"></span></td>
-              <td><span class="preview-bar" style="height: 9px; background: #b400ff;"></span></td>
-              <td><span class="preview-bar" style="height: 9px; background: #b400ff;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 9px; background: #b400ff;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 9px; background: #b400ff;"></span></td>
               <td><span class="highlight-active">8 px</span></td>
-              <td><span class="val-petr">9 px</span></td>
-              <td><span class="val-orig">9 px</span></td>
+              <td class="col-petr-width"><span class="val-petr">9 px</span></td>
+              <td class="col-orig-width"><span class="val-orig">9 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF <span class="lang-cs">pruh</span><span class="lang-en">stripe</span></span></td>
             </tr>
             <tr>
@@ -755,11 +888,11 @@
                 <span class="lang-en">Road with Cycleway</span>
               </td>
               <td><span class="preview-bar" style="height: 9px; background: #b400ff;"></span></td>
-              <td><span class="preview-bar" style="height: 10px; background: #b400ff;"></span></td>
-              <td><span class="preview-bar" style="height: 10px; background: #b400ff;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 10px; background: #b400ff;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 10px; background: #b400ff;"></span></td>
               <td><span class="highlight-active">9 px</span></td>
-              <td><span class="val-petr">10 px</span></td>
-              <td><span class="val-orig">10 px</span></td>
+              <td class="col-petr-width"><span class="val-petr">10 px</span></td>
+              <td class="col-orig-width"><span class="val-orig">10 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF <span class="lang-cs">pruh</span><span class="lang-en">stripe</span></span></td>
             </tr>
           </tbody>
@@ -787,11 +920,11 @@
                 <span class="lang-cs">Vizuál Bazinac</span>
                 <span class="lang-en">Bazinac Visual</span>
               </th>
-              <th>
+              <th class="col-petr-visual">
                 <span class="lang-cs">Vizuál Petr V5</span>
                 <span class="lang-en">Petr V5 Visual</span>
               </th>
-              <th>
+              <th class="col-orig-visual">
                 <span class="lang-cs">Vizuál Originál</span>
                 <span class="lang-en">Original Visual</span>
               </th>
@@ -799,8 +932,8 @@
                 <span class="lang-cs">Bazinac Mod v1 (Aktivní)</span>
                 <span class="lang-en">Bazinac Mod v1 (Active)</span>
               </th>
-              <th>Petr V5</th>
-              <th>
+              <th class="col-petr-width">Petr V5</th>
+              <th class="col-orig-width">
                 <span class="lang-cs">Původní Gravelista</span>
                 <span class="lang-en">Original Gravelista</span>
               </th>
@@ -818,16 +951,16 @@
                 <span class="lang-en">Gravel Track Road</span>
               </td>
               <td><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">3 px plná</span>
                   <span class="lang-en">3 px solid</span>
                 </span>
               </td>
-              <td>3 px solid</td>
-              <td><span class="val-orig">3 px</span></td>
+              <td class="col-petr-width">3 px solid</td>
+              <td class="col-orig-width"><span class="val-orig">3 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
             </tr>
             <tr>
@@ -837,16 +970,16 @@
                 <span class="lang-en">Path / Singletrack</span>
               </td>
               <td><span class="preview-bar" style="height: 5px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 5px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 2px; border-top: 1px dashed #5d7d88; border-bottom: 1px dashed #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 5px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 2px; border-top: 1px dashed #5d7d88; border-bottom: 1px dashed #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">5 px čárkovaná</span>
                   <span class="lang-en">5 px dashed</span>
                 </span>
               </td>
-              <td>5 px dashed</td>
-              <td><span class="val-orig">2 px</span></td>
+              <td class="col-petr-width">5 px dashed</td>
+              <td class="col-orig-width"><span class="val-orig">2 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
             </tr>
             <tr>
@@ -856,16 +989,16 @@
                 <span class="lang-en">Track or Path</span>
               </td>
               <td><span class="preview-bar" style="height: 5px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 5px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 2px; border-top: 1px dashed #5d7d88; border-bottom: 1px dashed #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 5px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 2px; border-top: 1px dashed #5d7d88; border-bottom: 1px dashed #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">5 px čárkovaná</span>
                   <span class="lang-en">5 px dashed</span>
                 </span>
               </td>
-              <td>5 px dashed</td>
-              <td><span class="val-orig">2 px</span></td>
+              <td class="col-petr-width">5 px dashed</td>
+              <td class="col-orig-width"><span class="val-orig">2 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
             </tr>
             <tr>
@@ -875,16 +1008,16 @@
                 <span class="lang-en">Path (cycling allowed)</span>
               </td>
               <td><span class="preview-bar" style="height: 6px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 6px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 3px; border-top: 1px dashed #5d7d88; border-bottom: 1px dashed #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 6px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 3px; border-top: 1px dashed #5d7d88; border-bottom: 1px dashed #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">6 px čárkovaná</span>
                   <span class="lang-en">6 px dashed</span>
                 </span>
               </td>
-              <td>6 px dashed</td>
-              <td><span class="val-orig">3 px</span></td>
+              <td class="col-petr-width">6 px dashed</td>
+              <td class="col-orig-width"><span class="val-orig">3 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
             </tr>
             <tr>
@@ -894,16 +1027,16 @@
                 <span class="lang-en">Pedestrian Pathway</span>
               </td>
               <td><span class="preview-bar" style="height: 4px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 4px; border-top: 2px dotted #5d7d88; border-bottom: 2px dotted #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 2px; border-top: 1px dotted #5d7d88; border-bottom: 1px dotted #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 4px; border-top: 2px dotted #5d7d88; border-bottom: 2px dotted #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 2px; border-top: 1px dotted #5d7d88; border-bottom: 1px dotted #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">4 px čárkovaná</span>
                   <span class="lang-en">4 px dashed</span>
                 </span>
               </td>
-              <td>4 px dotted</td>
-              <td><span class="val-orig">2 px</span></td>
+              <td class="col-petr-width">4 px dotted</td>
+              <td class="col-orig-width"><span class="val-orig">2 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
             </tr>
           </tbody>
@@ -931,11 +1064,11 @@
                 <span class="lang-cs">Vizuál Bazinac</span>
                 <span class="lang-en">Bazinac Visual</span>
               </th>
-              <th>
+              <th class="col-petr-visual">
                 <span class="lang-cs">Vizuál Petr V5</span>
                 <span class="lang-en">Petr V5 Visual</span>
               </th>
-              <th>
+              <th class="col-orig-visual">
                 <span class="lang-cs">Vizuál Originál</span>
                 <span class="lang-en">Original Visual</span>
               </th>
@@ -943,8 +1076,8 @@
                 <span class="lang-cs">Bazinac Mod v1 (Aktivní)</span>
                 <span class="lang-en">Bazinac Mod v1 (Active)</span>
               </th>
-              <th>Petr V5</th>
-              <th>
+              <th class="col-petr-width">Petr V5</th>
+              <th class="col-orig-width">
                 <span class="lang-cs">Původní Gravelista</span>
                 <span class="lang-en">Original Gravelista</span>
               </th>
@@ -962,11 +1095,11 @@
                 <span class="lang-en">Residential Street</span>
               </td>
               <td><span class="preview-bar" style="height: 7px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 11px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 5px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 11px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 5px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
               <td><span class="highlight-active">7 px (5+1+1)</span></td>
-              <td><span class="val-petr">11 px (7+2+2)</span></td>
-              <td><span class="val-orig">5 px (3+1+1)</span></td>
+              <td class="col-petr-width"><span class="val-petr">11 px (7+2+2)</span></td>
+              <td class="col-orig-width"><span class="val-orig">5 px (3+1+1)</span></td>
               <td>
                 <span class="lang-cs">Bílá s břidlicovým lemem</span>
                 <span class="lang-en">White with dark slate border</span>
@@ -979,11 +1112,11 @@
                 <span class="lang-en">Tertiary Road</span>
               </td>
               <td><span class="preview-bar" style="height: 11px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 6px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 14px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 6px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
               <td><span class="highlight-active">11 px (7+2+2)</span></td>
-              <td><span class="val-petr">14 px (10+2+2)</span></td>
-              <td><span class="val-orig">6 px (4+1+1)</span></td>
+              <td class="col-petr-width"><span class="val-petr">14 px (10+2+2)</span></td>
+              <td class="col-orig-width"><span class="val-orig">6 px (4+1+1)</span></td>
               <td>
                 <span class="lang-cs">Bílá s břidlicovým lemem</span>
                 <span class="lang-en">White with dark slate border</span>
@@ -996,11 +1129,11 @@
                 <span class="lang-en">Tertiary Road (alt)</span>
               </td>
               <td><span class="preview-bar" style="height: 7px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 7px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 4px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 7px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 4px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
               <td><span class="highlight-active">7 px (5+1+1)</span></td>
-              <td><span class="val-petr">7 px (5+1+1)</span></td>
-              <td><span class="val-orig">4 px (2+1+1)</span></td>
+              <td class="col-petr-width"><span class="val-petr">7 px (5+1+1)</span></td>
+              <td class="col-orig-width"><span class="val-orig">4 px (2+1+1)</span></td>
               <td>
                 <span class="lang-cs">Bílá s břidlicovým lemem</span>
                 <span class="lang-en">White with dark slate border</span>
@@ -1013,11 +1146,11 @@
                 <span class="lang-en">Secondary Highway</span>
               </td>
               <td><span class="preview-bar" style="height: 13px; background: #faef75; border: 2px solid #cdc037;"></span></td>
-              <td><span class="preview-bar" style="height: 15px; background: #faef75; border: 2px solid #cdc037;"></span></td>
-              <td><span class="preview-bar" style="height: 7px; background: #faef75; border: 1px solid #cdc037;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 15px; background: #faef75; border: 2px solid #cdc037;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 7px; background: #faef75; border: 1px solid #cdc037;"></span></td>
               <td><span class="highlight-active">13 px (9+2+2)</span></td>
-              <td><span class="val-petr">15 px (11+2+2)</span></td>
-              <td><span class="val-orig">7 px (5+1+1)</span></td>
+              <td class="col-petr-width"><span class="val-petr">15 px (11+2+2)</span></td>
+              <td class="col-orig-width"><span class="val-orig">7 px (5+1+1)</span></td>
               <td>
                 <span class="lang-cs">Žlutá se zlatavým lemem</span>
                 <span class="lang-en">Yellow with dark gold border</span>
@@ -1030,11 +1163,11 @@
                 <span class="lang-en">Secondary Road</span>
               </td>
               <td><span class="preview-bar" style="height: 12px; background: #faef75; border: 2px solid #cdc037;"></span></td>
-              <td><span class="preview-bar" style="height: 6px; background: #faef75; border: 1px solid #cdc037;"></span></td>
-              <td><span class="preview-bar" style="height: 4px; background: #faef75; border: 1px solid #cdc037;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 6px; background: #faef75; border: 1px solid #cdc037;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 4px; background: #faef75; border: 1px solid #cdc037;"></span></td>
               <td><span class="highlight-active">12 px (8+2+2)</span></td>
-              <td><span class="val-petr">6 px (4+1+1)</span></td>
-              <td><span class="val-orig">4 px (2+1+1)</span></td>
+              <td class="col-petr-width"><span class="val-petr">6 px (4+1+1)</span></td>
+              <td class="col-orig-width"><span class="val-orig">4 px (2+1+1)</span></td>
               <td>
                 <span class="lang-cs">Žlutá se zlatavým lemem</span>
                 <span class="lang-en">Yellow with dark gold border</span>
@@ -1047,11 +1180,11 @@
                 <span class="lang-en">Principal Highway</span>
               </td>
               <td><span class="preview-bar" style="height: 13px; background: #ffcc78; border: 2px solid #e8a541;"></span></td>
-              <td><span class="preview-bar" style="height: 15px; background: #ffcc78; border: 2px solid #e8a541;"></span></td>
-              <td><span class="preview-bar" style="height: 7px; background: #ffcc78; border: 1px solid #e8a541;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 15px; background: #ffcc78; border: 2px solid #e8a541;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 7px; background: #ffcc78; border: 1px solid #e8a541;"></span></td>
               <td><span class="highlight-active">13 px (9+2+2)</span></td>
-              <td><span class="val-petr">15 px (11+2+2)</span></td>
-              <td><span class="val-orig">7 px (5+1+1)</span></td>
+              <td class="col-petr-width"><span class="val-petr">15 px (11+2+2)</span></td>
+              <td class="col-orig-width"><span class="val-orig">7 px (5+1+1)</span></td>
               <td>
                 <span class="lang-cs">Oranžová s tmavě oranžovým lemem</span>
                 <span class="lang-en">Orange with amber border</span>
@@ -1064,11 +1197,11 @@
                 <span class="lang-en">Motorway / Trunk</span>
               </td>
               <td><span class="preview-bar" style="height: 14px; background: #bdff8b; border: 2px solid #009500;"></span></td>
-              <td><span class="preview-bar" style="height: 15px; background: #bdff8b; border: 2px solid #009500;"></span></td>
-              <td><span class="preview-bar" style="height: 8px; background: #bdff8b; border: 2px solid #009500;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 15px; background: #bdff8b; border: 2px solid #009500;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 8px; background: #bdff8b; border: 2px solid #009500;"></span></td>
               <td><span class="highlight-active">14 px (10+2+2)</span></td>
-              <td><span class="val-petr">15 px (11+2+2)</span></td>
-              <td><span class="val-orig">8 px (4+2+2)</span></td>
+              <td class="col-petr-width"><span class="val-petr">15 px (11+2+2)</span></td>
+              <td class="col-orig-width"><span class="val-orig">8 px (4+2+2)</span></td>
               <td>
                 <span class="lang-cs">Mátová s tmavozeleným lemem</span>
                 <span class="lang-en">Mint green with dark green border</span>
@@ -1081,11 +1214,11 @@
                 <span class="lang-en">Motorway / Trunk (alt)</span>
               </td>
               <td><span class="preview-bar" style="height: 9px; background: #bdff8b; border: 2px solid #009500;"></span></td>
-              <td><span class="preview-bar" style="height: 9px; background: #bdff8b; border: 2px solid #009500;"></span></td>
-              <td><span class="preview-bar" style="height: 7px; background: #bdff8b; border: 2px solid #009500;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 9px; background: #bdff8b; border: 2px solid #009500;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 7px; background: #bdff8b; border: 2px solid #009500;"></span></td>
               <td><span class="highlight-active">9 px (5+2+2)</span></td>
-              <td><span class="val-petr">9 px (5+2+2)</span></td>
-              <td><span class="val-orig">7 px (3+2+2)</span></td>
+              <td class="col-petr-width"><span class="val-petr">9 px (5+2+2)</span></td>
+              <td class="col-orig-width"><span class="val-orig">7 px (3+2+2)</span></td>
               <td>
                 <span class="lang-cs">Mátová s tmavozeleným lemem</span>
                 <span class="lang-en">Mint green with dark green border</span>
@@ -1098,11 +1231,11 @@
                 <span class="lang-en">Minor Paved Road</span>
               </td>
               <td><span class="preview-bar" style="height: 9px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 11px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 4px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 11px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 4px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
               <td><span class="highlight-active">9 px (7+1+1)</span></td>
-              <td><span class="val-petr">11 px (7+2+2)</span></td>
-              <td><span class="val-orig">4 px (2+1+1)</span></td>
+              <td class="col-petr-width"><span class="val-petr">11 px (7+2+2)</span></td>
+              <td class="col-orig-width"><span class="val-orig">4 px (2+1+1)</span></td>
               <td>
                 <span class="lang-cs">Bílá s břidlicovým lemem</span>
                 <span class="lang-en">White with dark slate border</span>
@@ -1115,16 +1248,16 @@
                 <span class="lang-en">Minor Paved Road (alt)</span>
               </td>
               <td><span class="preview-bar" style="height: 4px; background: #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 4px; background: #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 2px; background: #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 4px; background: #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 2px; background: #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">4 px plná</span>
                   <span class="lang-en">4 px solid</span>
                 </span>
               </td>
-              <td>4 px solid</td>
-              <td><span class="val-orig">2 px</span></td>
+              <td class="col-petr-width">4 px solid</td>
+              <td class="col-orig-width"><span class="val-orig">2 px</span></td>
               <td>
                 <span class="lang-cs">Plná tmavá břidlice</span>
                 <span class="lang-en">Solid dark slate</span>
@@ -1137,16 +1270,16 @@
                 <span class="lang-en">Service Road</span>
               </td>
               <td><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 2px; background: #5d7d88;"></span></td>
-              <td><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 2px; background: #5d7d88;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
                   <span class="lang-cs">3 px plná</span>
                   <span class="lang-en">3 px solid</span>
                 </span>
               </td>
-              <td>2 px solid</td>
-              <td><span class="val-orig">3 px</span></td>
+              <td class="col-petr-width">2 px solid</td>
+              <td class="col-orig-width"><span class="val-orig">3 px</span></td>
               <td>
                 <span class="lang-cs">Plná tmavá břidlice</span>
                 <span class="lang-en">Solid dark slate</span>
@@ -1177,11 +1310,11 @@
                 <span class="lang-cs">Vizuál Bazinac</span>
                 <span class="lang-en">Bazinac Visual</span>
               </th>
-              <th>
+              <th class="col-petr-visual">
                 <span class="lang-cs">Vizuál Petr V5</span>
                 <span class="lang-en">Petr V5 Visual</span>
               </th>
-              <th>
+              <th class="col-orig-visual">
                 <span class="lang-cs">Vizuál Originál</span>
                 <span class="lang-en">Original Visual</span>
               </th>
@@ -1189,8 +1322,8 @@
                 <span class="lang-cs">Bazinac Mod v1 (Aktivní)</span>
                 <span class="lang-en">Bazinac Mod v1 (Active)</span>
               </th>
-              <th>Petr V5</th>
-              <th>
+              <th class="col-petr-width">Petr V5</th>
+              <th class="col-orig-width">
                 <span class="lang-cs">Původní Gravelista</span>
                 <span class="lang-en">Original Gravelista</span>
               </th>
@@ -1208,11 +1341,11 @@
                 <span class="lang-en">KČT Červená (Red Trail)</span>
               </td>
               <td><span class="preview-bar" style="height: 14px; background: #ff0000; opacity: 0.85;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #ff0000; opacity: 0.85;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #ff0000; opacity: 0.85;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 14px; background: #ff0000; opacity: 0.85;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 14px; background: #ff0000; opacity: 0.85;"></span></td>
               <td><span class="highlight-active">14 px</span></td>
-              <td><span class="val-petr">14 px</span></td>
-              <td><span class="val-orig">14 px</span></td>
+              <td class="col-petr-width"><span class="val-petr">14 px</span></td>
+              <td class="col-orig-width"><span class="val-orig">14 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#ff0000;"></span><span class="lang-cs">Červený pás</span><span class="lang-en">Red ribbon</span></span></td>
             </tr>
             <tr>
@@ -1222,11 +1355,11 @@
                 <span class="lang-en">KČT Modrá (Blue Trail)</span>
               </td>
               <td><span class="preview-bar" style="height: 14px; background: #0000ff; opacity: 0.85;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #0000ff; opacity: 0.85;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #0000ff; opacity: 0.85;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 14px; background: #0000ff; opacity: 0.85;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 14px; background: #0000ff; opacity: 0.85;"></span></td>
               <td><span class="highlight-active">14 px</span></td>
-              <td><span class="val-petr">14 px</span></td>
-              <td><span class="val-orig">14 px</span></td>
+              <td class="col-petr-width"><span class="val-petr">14 px</span></td>
+              <td class="col-orig-width"><span class="val-orig">14 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#0000ff;"></span><span class="lang-cs">Modrý pás</span><span class="lang-en">Blue ribbon</span></span></td>
             </tr>
             <tr>
@@ -1236,11 +1369,11 @@
                 <span class="lang-en">KČT Zelená (Green Trail)</span>
               </td>
               <td><span class="preview-bar" style="height: 14px; background: #00ff00; opacity: 0.85;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #00ff00; opacity: 0.85;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #00ff00; opacity: 0.85;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 14px; background: #00ff00; opacity: 0.85;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 14px; background: #00ff00; opacity: 0.85;"></span></td>
               <td><span class="highlight-active">14 px</span></td>
-              <td><span class="val-petr">14 px</span></td>
-              <td><span class="val-orig">14 px</span></td>
+              <td class="col-petr-width"><span class="val-petr">14 px</span></td>
+              <td class="col-orig-width"><span class="val-orig">14 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#00ff00;"></span><span class="lang-cs">Zelený pás</span><span class="lang-en">Green ribbon</span></span></td>
             </tr>
             <tr>
@@ -1250,11 +1383,11 @@
                 <span class="lang-en">KČT Žlutá (Yellow Trail)</span>
               </td>
               <td><span class="preview-bar" style="height: 14px; background: #20caff; opacity: 0.85;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #20caff; opacity: 0.85;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #20caff; opacity: 0.85;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 14px; background: #20caff; opacity: 0.85;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 14px; background: #20caff; opacity: 0.85;"></span></td>
               <td><span class="highlight-active">14 px</span></td>
-              <td><span class="val-petr">14 px</span></td>
-              <td><span class="val-orig">14 px</span></td>
+              <td class="col-petr-width"><span class="val-petr">14 px</span></td>
+              <td class="col-orig-width"><span class="val-orig">14 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#20caff;"></span><span class="lang-cs">Žlutá / Zlatá</span><span class="lang-en">Yellow / Gold</span></span></td>
             </tr>
             <tr>
@@ -1264,11 +1397,11 @@
                 <span class="lang-en">KČT Černá (Black Trail)</span>
               </td>
               <td><span class="preview-bar" style="height: 14px; background: #000000; border: 1px solid #475569;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #000000; border: 1px solid #475569;"></span></td>
-              <td><span class="preview-bar" style="height: 14px; background: #000000; border: 1px solid #475569;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 14px; background: #000000; border: 1px solid #475569;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 14px; background: #000000; border: 1px solid #475569;"></span></td>
               <td><span class="highlight-active">14 px</span></td>
-              <td><span class="val-petr">14 px</span></td>
-              <td><span class="val-orig">14 px</span></td>
+              <td class="col-petr-width"><span class="val-petr">14 px</span></td>
+              <td class="col-orig-width"><span class="val-orig">14 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#000000;"></span><span class="lang-cs">Černý pás</span><span class="lang-en">Black ribbon</span></span></td>
             </tr>
             <tr>
@@ -1278,11 +1411,11 @@
                 <span class="lang-en">MTB Route</span>
               </td>
               <td><span class="preview-bar" style="height: 9px; background: #00ff39;"></span></td>
-              <td><span class="preview-bar" style="height: 9px; background: #00ff39;"></span></td>
-              <td><span class="preview-bar" style="height: 9px; background: #00ff39;"></span></td>
+              <td class="col-petr-visual"><span class="preview-bar" style="height: 9px; background: #00ff39;"></span></td>
+              <td class="col-orig-visual"><span class="preview-bar" style="height: 9px; background: #00ff39;"></span></td>
               <td><span class="highlight-active">9 px</span></td>
-              <td><span class="val-petr">9 px</span></td>
-              <td><span class="val-orig">9 px</span></td>
+              <td class="col-petr-width"><span class="val-petr">9 px</span></td>
+              <td class="col-orig-width"><span class="val-orig">9 px</span></td>
               <td><span class="color-swatch"><span class="swatch-box" style="background:#00ff39;"></span><span class="lang-cs">Jasně zelená</span><span class="lang-en">Bright Green</span></span></td>
             </tr>
           </tbody>
@@ -1479,6 +1612,64 @@ python3 modify_typ.py
   </div>
 
   <script>
+    function toggleColumn(colClass) {
+      const key = colClass.replace('col-', '');
+      const bodyClass = 'hide-' + key;
+      const isHidden = document.body.classList.toggle(bodyClass);
+      const btn = document.getElementById('toggle-' + key);
+      if (btn) {
+        btn.classList.toggle('active', !isHidden);
+      }
+      saveColumnStates();
+    }
+
+    function toggleAllComparison(show) {
+      const cols = ['petr-visual', 'orig-visual', 'petr-width', 'orig-width'];
+      cols.forEach(key => {
+        const bodyClass = 'hide-' + key;
+        if (show) {
+          document.body.classList.remove(bodyClass);
+        } else {
+          document.body.classList.add(bodyClass);
+        }
+        const btn = document.getElementById('toggle-' + key);
+        if (btn) btn.classList.toggle('active', show);
+      });
+      saveColumnStates();
+    }
+
+    function saveColumnStates() {
+      const state = {
+        'petr-visual': !document.body.classList.contains('hide-petr-visual'),
+        'orig-visual': !document.body.classList.contains('hide-orig-visual'),
+        'petr-width': !document.body.classList.contains('hide-petr-width'),
+        'orig-width': !document.body.classList.contains('hide-orig-width')
+      };
+      try {
+        localStorage.setItem('gravelista_cols', JSON.stringify(state));
+      } catch (e) {}
+    }
+
+    function loadColumnStates() {
+      try {
+        const saved = localStorage.getItem('gravelista_cols');
+        if (saved) {
+          const state = JSON.parse(saved);
+          Object.keys(state).forEach(key => {
+            const show = state[key];
+            const bodyClass = 'hide-' + key;
+            if (!show) {
+              document.body.classList.add(bodyClass);
+            } else {
+              document.body.classList.remove(bodyClass);
+            }
+            const btn = document.getElementById('toggle-' + key);
+            if (btn) btn.classList.toggle('active', show);
+          });
+        }
+      } catch (e) {}
+    }
+
     function setLanguage(lang) {
       if (lang !== 'cs' && lang !== 'en') lang = 'cs';
       document.documentElement.lang = lang;
@@ -1517,6 +1708,7 @@ python3 modify_typ.py
         }
       }
       setLanguage(lang);
+      loadColumnStates();
     })();
   </script>
 
