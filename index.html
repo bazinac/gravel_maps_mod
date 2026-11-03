@@ -1,1 +1,1432 @@
-Gravelista_Bazinac_Map_Summary.html
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GravelistaCZ (Bazinac Mod) — Garmin Edge 850 / 1050 / 1060</title>
+  <style>
+    :root {
+      --bg: #0d1410;
+      --card-bg: #15221b;
+      --card-border: #23372c;
+      --card-header: #1a2c23;
+      --text: #e8ede9;
+      --text-muted: #8fa597;
+      --forest-green: #34d399;
+      --forest-dark: #064e3b;
+      --earth-accent: #eab308;
+      --earth-tan: #ca8a04;
+      --trail-sand: #d4a373;
+      --magenta: #b400ff;
+      --slate: #5d7d88;
+      --row-alt: #121c16;
+      --code-bg: #0a0f0c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(ellipse at top left, rgba(52, 211, 153, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(234, 179, 8, 0.05) 0%, transparent 60%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2.5rem 1.5rem;
+    }
+
+    /* Bilingual display rules */
+    html[lang="cs"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-cs { display: none !important; }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* Header & Navigation Hero */
+    header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 2rem;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .header-branding {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+
+    h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      color: var(--forest-green);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-top: 0.35rem;
+    }
+
+    /* Language Switcher UI */
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(10, 15, 12, 0.85);
+      border: 1px solid var(--card-border);
+      border-radius: 9999px;
+      padding: 3px;
+      gap: 3px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: transparent;
+      color: var(--text-muted);
+      border: none;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      user-select: none;
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .lang-btn.active {
+      background: var(--forest-green);
+      color: #052e16;
+      box-shadow: 0 2px 10px rgba(52, 211, 153, 0.35);
+    }
+
+    .lang-btn .flag {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .meta-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.8rem;
+      border-radius: 9999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+    }
+
+    .badge-accent {
+      background: rgba(52, 211, 153, 0.15);
+      border-color: rgba(52, 211, 153, 0.4);
+      color: var(--forest-green);
+    }
+
+    .badge-gold {
+      background: rgba(234, 179, 8, 0.15);
+      border-color: rgba(234, 179, 8, 0.4);
+      color: var(--earth-accent);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.85rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin-bottom: 1.25rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin: 1.75rem 0 0.85rem 0;
+      color: var(--forest-green);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+    }
+
+    p strong {
+      color: var(--text);
+    }
+
+    a {
+      color: var(--forest-green);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    a:hover {
+      color: #86efac;
+      text-decoration: underline;
+    }
+
+    /* Download Hero Card */
+    .download-card {
+      background: linear-gradient(135deg, rgba(6, 78, 59, 0.4) 0%, rgba(21, 34, 27, 0.9) 100%);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .download-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .download-details {
+      max-width: 650px;
+    }
+
+    .download-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
+    }
+
+    .download-file-tag {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.9rem;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      color: var(--forest-green);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--forest-green);
+      color: #052e16;
+      font-weight: 700;
+      padding: 0.85rem 1.6rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(52, 211, 153, 0.35);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .download-btn:hover {
+      background: #86efac;
+      color: #052e16;
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(52, 211, 153, 0.45);
+    }
+
+    .download-note {
+      font-size: 0.85rem;
+      color: var(--trail-sand);
+      margin-top: 0.3rem;
+    }
+
+    /* Table Styles */
+    .table-container {
+      overflow-x: auto;
+      margin: 1rem 0 1.5rem 0;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: var(--bg);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.925rem;
+    }
+
+    th {
+      background: var(--card-header);
+      color: #ffffff;
+      font-weight: 600;
+      padding: 0.9rem 1rem;
+      border-bottom: 2px solid var(--card-border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--card-border);
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    tr:nth-child(even) {
+      background: var(--row-alt);
+    }
+
+    tr:hover {
+      background: rgba(52, 211, 153, 0.05);
+    }
+
+    /* Visual preview bars */
+    .preview-bar {
+      display: inline-block;
+      width: 80px;
+      vertical-align: middle;
+      border-radius: 1px;
+    }
+
+    .color-swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.825rem;
+    }
+
+    .swatch-box {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .code-tag {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: var(--code-bg);
+      padding: 0.2rem 0.45rem;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      color: var(--forest-green);
+      border: 1px solid var(--card-border);
+    }
+
+    .highlight-active {
+      color: var(--forest-green);
+      font-weight: 700;
+      background: rgba(52, 211, 153, 0.1);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .val-petr {
+      color: var(--trail-sand);
+      font-weight: 500;
+    }
+
+    .val-orig {
+      color: var(--text-muted);
+    }
+
+    /* Pre & Code blocks */
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.875rem;
+      color: #e2e8f0;
+      margin: 1rem 0;
+    }
+
+    code {
+      font-family: inherit;
+    }
+
+    /* Steps list */
+    .steps-list {
+      margin-left: 1.5rem;
+      margin-bottom: 1.25rem;
+      color: var(--text-muted);
+    }
+
+    .steps-list li {
+      margin-bottom: 0.6rem;
+    }
+
+    .steps-list strong {
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+      .header-top {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .lang-switcher {
+        align-self: flex-start;
+      }
+      .download-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .download-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header Section -->
+    <header>
+      <div class="header-top">
+        <div class="header-branding">
+          <div class="header-icon">🌲🚵</div>
+          <div>
+            <h1>GravelistaCZ — Bazinac Mod</h1>
+            <div class="subtitle lang-cs">Optimalizovaný styl mapy a šířky linií pro Garmin Edge 850 / 1050 / 1060</div>
+            <div class="subtitle lang-en">Optimized Map Style &amp; Line Widths for Garmin Edge 850 / 1050 / 1060</div>
+          </div>
+        </div>
+
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="cs" onclick="setLanguage('cs')">
+            <span class="flag">🇨🇿</span> Čeština
+          </button>
+          <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
+            <span class="flag">🇬🇧</span> English
+          </button>
+        </div>
+      </div>
+
+      <div class="meta-badges">
+        <span class="badge badge-accent">
+          <span class="lang-cs">Vydání: Bazinac Mod v1</span>
+          <span class="lang-en">Release: Bazinac Mod v1</span>
+        </span>
+        <span class="badge badge-gold">
+          <span class="lang-cs">Cílová zařízení: Garmin Edge 850 / 1050 / 1060</span>
+          <span class="lang-en">Target: Garmin Edge 850 / 1050 / 1060</span>
+        </span>
+        <span class="badge">
+          <span class="lang-cs">FID mapy: 2222</span>
+          <span class="lang-en">Map FID: 2222</span>
+        </span>
+        <span class="badge">PID: 1</span>
+        <span class="badge">
+          <span class="lang-cs">Kódování: 1252 (CP1252)</span>
+          <span class="lang-en">CodePage: 1252</span>
+        </span>
+        <span class="badge">
+          <span class="lang-cs">TYP: STYLE_BAZINAC_V1.typ (34 631 B)</span>
+          <span class="lang-en">TYP: STYLE_BAZINAC_V1.typ (34,631 B)</span>
+        </span>
+        <a href="https://github.com/bazinac/gravel_maps_mod" target="_blank" rel="noopener noreferrer" class="badge" style="color: #ffffff; text-decoration: none; border-color: rgba(255, 255, 255, 0.25);">
+          <svg height="14" width="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: text-bottom; margin-right: 5px;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          GitHub: bazinac/gravel_maps_mod
+        </a>
+      </div>
+    </header>
+
+    <!-- Download Card (Cloudflare R2 Storage) -->
+    <div class="card download-card">
+      <div class="download-content">
+        <div class="download-details">
+          <div class="download-title">
+            <span class="lang-cs">📦 Hotový mapový kontejner k instalaci</span>
+            <span class="lang-en">📦 Ready-to-Install Map Container</span>
+          </div>
+          <div class="download-file-tag">GravelistaCZ_CE_c2607_Bazinac_mod_v1.img (~3.98 GB)</div>
+          
+          <p class="lang-cs">
+            Kompletní předkompilovaný mapový kontejner pro střední Evropu se zabudovaným stylem <strong>Bazinac Mod v1</strong>. Stačí stáhnout a zkopírovat do složky <code>/Garmin</code> ve vaší navigaci Garmin Edge přes USB.
+          </p>
+          <p class="lang-en">
+            Complete pre-compiled Central Europe map container with <strong>Bazinac Mod v1</strong> style embedded. Simply download and copy into the <code>/Garmin</code> folder on your Garmin Edge device via USB.
+          </p>
+
+          <div class="download-note lang-cs">
+            ⚡ <em>Rychlé přímé stažení přes Cloudflare R2 CDN (bez denních limitů stahování, bez varování antiviru, vysoká rychlost po celém světě).</em>
+          </div>
+          <div class="download-note lang-en">
+            ⚡ <em>High-speed direct download powered by Cloudflare R2 CDN (no daily download quotas, no virus scan warnings, fast global edge delivery).</em>
+          </div>
+        </div>
+
+        <div>
+          <!-- CLOUDFLARE R2 PUBLIC LINK -->
+          <a href="https://pub-d6fd84d7c2d3433db3bcc0bc9220ef09.r2.dev/GravelistaCZ_CE_c2607_Bazinac_mod_v1.img" target="_blank" rel="noopener noreferrer" class="download-btn">
+            <span class="lang-cs">📥 Přímé stažení (Cloudflare R2)</span>
+            <span class="lang-en">📥 Direct Download (Cloudflare R2)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Purpose & Context -->
+    <div class="card">
+      <h2>
+        <span class="lang-cs">🎯 Cíl a pozadí projektu</span>
+        <span class="lang-en">🎯 Goal &amp; Project Background</span>
+      </h2>
+
+      <div class="lang-cs">
+        <p>
+          Projekt <a href="https://gravelista.cz" target="_blank" rel="noopener noreferrer"><strong>Gravelista (gravelista.cz)</strong></a> přináší špičkovou cyklistickou a gravel mapu pro Česko a střední Evropu, postavenou na OpenStreetMap s podrobným hodnocením povrchů a vyznačenými cyklotrasami i turistickými cestami.
+        </p>
+        <p>
+          Původní vestavěný styl Garminu (<code>STYLE_original.typ</code>) však vykresluje řadu silnic a stezek jako tenké <strong>2–4 px linky</strong>. Na moderních displejích s vysokou hustotou pixelů (high-DPI) u nových cyklopočítačů <strong>Garmin Edge 850, 1050 a 1060</strong> jsou tyto vlasové linky na přímém slunci a při vibracích v terénu takřka nečitelné. Naopak některé agresivní úpravy (např. starší profily Petra) zvětšily běžné ulice až na <strong>11–15 px</strong>, což v hustší zástavbě slévá ulice do jednolité barevné hmoty a překrývá fialovou navigační trasu Garminu.
+        </p>
+        <p>
+          <strong>Bazinac Mod v1</strong> přináší ideálně vyváženou vizuální hierarchii ušitou na míru gravelistům, bikepackerům i silničním jezdcům:
+        </p>
+        <ul class="steps-list">
+          <li><strong>Zřetelný gravel a stezky:</strong> Lesní šotoliny, zpevněné cesty i singletracky přebírají osvědčený a čitelný 5px čárkovaný profil z verze Petr V4.</li>
+          <li><strong>Výrazné cyklotrasy:</strong> Samostatné cyklostezky, nezpevněné cyklotrasy i cyklozóny jasně vystupují v signální purpurové barvě při 6–7 px.</li>
+          <li><strong>Vyvážená silniční síť:</strong> Obytné ulice (7 px) i vedlejší silnice (9 px) jsou perfektně čitelné, ale nepřekrývají mapu v obcích a městech.</li>
+          <li><strong>Zachované KČT turistické značky:</strong> Tradiční české pásové značení (červená, modrá, zelená, žlutá, černá) zůstává syté a průhledné při 14 px.</li>
+        </ul>
+      </div>
+
+      <div class="lang-en">
+        <p>
+          The <a href="https://gravelista.cz" target="_blank" rel="noopener noreferrer"><strong>Gravelista project (gravelista.cz)</strong></a> delivers the premier cycling and gravel map for Czechia and Central Europe, built on OpenStreetMap with dedicated surface grading and marked trail data.
+        </p>
+        <p>
+          However, the original embedded Garmin style (<code>STYLE_original.typ</code>) renders many roads and trails as fine <strong>2–4 px hairlines</strong>. On high-DPI, vivid sunlight screens found on the <strong>Garmin Edge 850, 1050, and 1060</strong>, these fine lines become nearly invisible under direct sun and trail vibration. Conversely, third-party aggressive modifications (like early Petr profiles) scaled vehicular streets up to <strong>11–15 px</strong>, causing dense town grids to blur into solid blocks of color and masking Garmin's active navigation route line.
+        </p>
+        <p>
+          <strong>Bazinac Mod v1</strong> delivers the ideal balanced visual hierarchy for gravel travelers, bikepackers, and road navigators:
+        </p>
+        <ul class="steps-list">
+          <li><strong>Distinct Gravel &amp; Paths:</strong> Forestry gravel tracks, singletracks, and paths adopt Petr V4's proven, legible 5 px dashed profile.</li>
+          <li><strong>Prominent Cycling Corridors:</strong> Dedicated cycleways, unpaved bikepaths, and cyclestreets pop out in signature magenta at 6–7 px.</li>
+          <li><strong>Balanced Road Grid:</strong> Residential streets (7 px) and minor roads (9 px) remain clearly distinct without overpowering town centers.</li>
+          <li><strong>Preserved Czech Tourist Ribbons:</strong> Traditional Czech KČT hiking trail marks (Red, Blue, Green, Yellow, Black) stay bold and transparent at 14 px.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Style Comparison Tables -->
+    <div class="card">
+      <h2>
+        <span class="lang-cs">📐 Porovnání stylů a specifikace šířek linií</span>
+        <span class="lang-en">📐 Style Differences &amp; Line Width Specifications</span>
+      </h2>
+      <p class="lang-cs">Srovnání rozměrů linií napříč dostupnými styly TYP:</p>
+      <p class="lang-en">Comparison of line dimensions across available TYP stylesheets:</p>
+
+      <!-- 1. Cycling Infrastructure -->
+      <h3>
+        <span class="lang-cs">🚴 1. Cyklistická infrastruktura</span>
+        <span class="lang-en">🚴 1. Cycling Infrastructure</span>
+      </h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <span class="lang-cs">Kód typu</span>
+                <span class="lang-en">Type Code</span>
+              </th>
+              <th>
+                <span class="lang-cs">Klasifikace / Popis</span>
+                <span class="lang-en">Description</span>
+              </th>
+              <th>
+                <span class="lang-cs">Vizuální náhled</span>
+                <span class="lang-en">Visual Preview</span>
+              </th>
+              <th>
+                <span class="lang-cs">Bazinac Mod v1 (Aktivní)</span>
+                <span class="lang-en">Bazinac Mod v1 (Active)</span>
+              </th>
+              <th>Petr V4</th>
+              <th>
+                <span class="lang-cs">Původní Gravelista</span>
+                <span class="lang-en">Original Gravelista</span>
+              </th>
+              <th>
+                <span class="lang-cs">Barva / Textura</span>
+                <span class="lang-en">Color / Texture</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="code-tag">0x11</span></td>
+              <td>
+                <span class="lang-cs">Samostatná cyklostezka</span>
+                <span class="lang-en">Dedicated Cycleway</span>
+              </td>
+              <td><span class="preview-bar" style="height: 7px; background: #b400ff;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">7 px plná</span>
+                  <span class="lang-en">7 px solid</span>
+                </span>
+              </td>
+              <td>7 px solid</td>
+              <td><span class="val-orig">2 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x16</span></td>
+              <td>
+                <span class="lang-cs">Cyklostezka / cyklopruh</span>
+                <span class="lang-en">Bike Path</span>
+              </td>
+              <td><span class="preview-bar" style="height: 6px; background: #b400ff; border: 1px solid #70009f;"></span></td>
+              <td><span class="highlight-active">6 px (4+1+1)</span></td>
+              <td><span class="val-petr">6 px (4+1+1)</span></td>
+              <td><span class="val-orig">4 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF / #70009F</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x0b</span></td>
+              <td>
+                <span class="lang-cs">Nezpevněná cyklotrasa</span>
+                <span class="lang-en">Unpaved Bikepath</span>
+              </td>
+              <td><span class="preview-bar" style="height: 6px; border-top: 2px dashed #b400ff; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">6 px čárkovaná</span>
+                  <span class="lang-en">6 px dashed</span>
+                </span>
+              </td>
+              <td>6 px dashed</td>
+              <td><span class="val-orig">4 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF / #5D7D88</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x0e</span></td>
+              <td>
+                <span class="lang-cs">Cyklostezka (zhutněný / mlatový povrch)</span>
+                <span class="lang-en">Bikepath (compacted)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 6px; border-top: 2px dashed #b400ff; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">6 px čárkovaná</span>
+                  <span class="lang-en">6 px dashed</span>
+                </span>
+              </td>
+              <td>6 px dashed</td>
+              <td><span class="val-orig">4 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF / #5D7D88</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x101/0x16</span></td>
+              <td>
+                <span class="lang-cs">Cyklistická zóna / cyklo-ulice</span>
+                <span class="lang-en">Cyclestreet</span>
+              </td>
+              <td><span class="preview-bar" style="height: 7px; background: #b400ff;"></span></td>
+              <td><span class="highlight-active">7 px</span></td>
+              <td><span class="val-petr">7 px</span></td>
+              <td><span class="val-orig">5 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x100/0x16</span></td>
+              <td>
+                <span class="lang-cs">Asfaltka (průjezd kol povolen)</span>
+                <span class="lang-en">Paved road (cycling allowed)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 4px; background: #5d7d88;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">4 px plná</span>
+                  <span class="lang-en">4 px solid</span>
+                </span>
+              </td>
+              <td>3 px solid</td>
+              <td><span class="val-orig">2 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x26</span></td>
+              <td>
+                <span class="lang-cs">Silnice s cyklopruhem</span>
+                <span class="lang-en">Road with Bikelane</span>
+              </td>
+              <td><span class="preview-bar" style="height: 8px; background: #b400ff;"></span></td>
+              <td><span class="highlight-active">8 px</span></td>
+              <td><span class="val-petr">9 px</span></td>
+              <td><span class="val-orig">9 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF <span class="lang-cs">pruh</span><span class="lang-en">stripe</span></span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x100/0x09</span></td>
+              <td>
+                <span class="lang-cs">Silnice se souběžnou cyklostezkou</span>
+                <span class="lang-en">Road with Cycleway</span>
+              </td>
+              <td><span class="preview-bar" style="height: 9px; background: #b400ff;"></span></td>
+              <td><span class="highlight-active">9 px</span></td>
+              <td><span class="val-petr">10 px</span></td>
+              <td><span class="val-orig">10 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#b400ff;"></span>#B400FF <span class="lang-cs">pruh</span><span class="lang-en">stripe</span></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 2. Gravel, Tracks & Pathways -->
+      <h3>
+        <span class="lang-cs">🌲 2. Gravel, lesní a polní cesty, stezky</span>
+        <span class="lang-en">🌲 2. Gravel, Tracks &amp; Pathways</span>
+      </h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <span class="lang-cs">Kód typu</span>
+                <span class="lang-en">Type Code</span>
+              </th>
+              <th>
+                <span class="lang-cs">Klasifikace / Popis</span>
+                <span class="lang-en">Description</span>
+              </th>
+              <th>
+                <span class="lang-cs">Vizuální náhled</span>
+                <span class="lang-en">Visual Preview</span>
+              </th>
+              <th>
+                <span class="lang-cs">Bazinac Mod v1 (Aktivní)</span>
+                <span class="lang-en">Bazinac Mod v1 (Active)</span>
+              </th>
+              <th>Petr V4</th>
+              <th>
+                <span class="lang-cs">Původní Gravelista</span>
+                <span class="lang-en">Original Gravelista</span>
+              </th>
+              <th>
+                <span class="lang-cs">Barva a styl</span>
+                <span class="lang-en">Color / Style</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="code-tag">0x0f</span></td>
+              <td>
+                <span class="lang-cs">Šotolinová lesní / polní cesta</span>
+                <span class="lang-en">Gravel Track Road</span>
+              </td>
+              <td><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">3 px plná</span>
+                  <span class="lang-en">3 px solid</span>
+                </span>
+              </td>
+              <td>3 px solid</td>
+              <td><span class="val-orig">3 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x0a</span></td>
+              <td>
+                <span class="lang-cs">Pěšina / Singletrack</span>
+                <span class="lang-en">Path / Singletrack</span>
+              </td>
+              <td><span class="preview-bar" style="height: 5px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">5 px čárkovaná</span>
+                  <span class="lang-en">5 px dashed</span>
+                </span>
+              </td>
+              <td>5 px dashed</td>
+              <td><span class="val-orig">2 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x15</span></td>
+              <td>
+                <span class="lang-cs">Polní nebo lesní cesta</span>
+                <span class="lang-en">Track or Path</span>
+              </td>
+              <td><span class="preview-bar" style="height: 5px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">5 px čárkovaná</span>
+                  <span class="lang-en">5 px dashed</span>
+                </span>
+              </td>
+              <td>5 px dashed</td>
+              <td><span class="val-orig">2 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x0d</span></td>
+              <td>
+                <span class="lang-cs">Pěšina (vjezd kol povolen)</span>
+                <span class="lang-en">Path (cycling allowed)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 6px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">6 px čárkovaná</span>
+                  <span class="lang-en">6 px dashed</span>
+                </span>
+              </td>
+              <td>6 px dashed</td>
+              <td><span class="val-orig">3 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x08</span></td>
+              <td>
+                <span class="lang-cs">Chodník / pěší stezka</span>
+                <span class="lang-en">Pedestrian Pathway</span>
+              </td>
+              <td><span class="preview-bar" style="height: 4px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">4 px čárkovaná</span>
+                  <span class="lang-en">4 px dashed</span>
+                </span>
+              </td>
+              <td>4 px dotted</td>
+              <td><span class="val-orig">2 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#5d7d88;"></span>#5D7D88 (<span class="lang-cs">Břidlice</span><span class="lang-en">Slate</span>)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 3. General Vehicular Roads -->
+      <h3>
+        <span class="lang-cs">🛣️ 3. Silniční síť pro vozidla</span>
+        <span class="lang-en">🛣️ 3. General Vehicular Roads</span>
+      </h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <span class="lang-cs">Kód typu</span>
+                <span class="lang-en">Type Code</span>
+              </th>
+              <th>
+                <span class="lang-cs">Klasifikace silnice</span>
+                <span class="lang-en">Classification</span>
+              </th>
+              <th>
+                <span class="lang-cs">Vizuální náhled</span>
+                <span class="lang-en">Visual Preview</span>
+              </th>
+              <th>
+                <span class="lang-cs">Bazinac Mod v1 (Aktivní)</span>
+                <span class="lang-en">Bazinac Mod v1 (Active)</span>
+              </th>
+              <th>Petr V4</th>
+              <th>
+                <span class="lang-cs">Původní Gravelista</span>
+                <span class="lang-en">Original Gravelista</span>
+              </th>
+              <th>
+                <span class="lang-cs">Barevná hierarchie</span>
+                <span class="lang-en">Color Hierarchy</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="code-tag">0x06</span></td>
+              <td>
+                <span class="lang-cs">Obytná ulice (místní komunikace)</span>
+                <span class="lang-en">Residential Street</span>
+              </td>
+              <td><span class="preview-bar" style="height: 7px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
+              <td><span class="highlight-active">7 px (5+1+1)</span></td>
+              <td><span class="val-petr">11 px (7+2+2)</span></td>
+              <td><span class="val-orig">5 px (3+1+1)</span></td>
+              <td>
+                <span class="lang-cs">Bílá s břidlicovým lemem</span>
+                <span class="lang-en">White with dark slate border</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x05</span></td>
+              <td>
+                <span class="lang-cs">Silnice III. třídy</span>
+                <span class="lang-en">Tertiary Road</span>
+              </td>
+              <td><span class="preview-bar" style="height: 11px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
+              <td><span class="highlight-active">11 px (7+2+2)</span></td>
+              <td><span class="val-petr">12 px (8+2+2)</span></td>
+              <td><span class="val-orig">6 px (4+1+1)</span></td>
+              <td>
+                <span class="lang-cs">Bílá s břidlicovým lemem</span>
+                <span class="lang-en">White with dark slate border</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x100/0x01</span></td>
+              <td>
+                <span class="lang-cs">Silnice III. třídy (alt)</span>
+                <span class="lang-en">Tertiary Road (alt)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 7px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
+              <td><span class="highlight-active">7 px (5+1+1)</span></td>
+              <td><span class="val-petr">7 px (5+1+1)</span></td>
+              <td><span class="val-orig">4 px (2+1+1)</span></td>
+              <td>
+                <span class="lang-cs">Bílá s břidlicovým lemem</span>
+                <span class="lang-en">White with dark slate border</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x04</span></td>
+              <td>
+                <span class="lang-cs">Silnice II. třídy (významná)</span>
+                <span class="lang-en">Secondary Highway</span>
+              </td>
+              <td><span class="preview-bar" style="height: 13px; background: #75effa; border: 2px solid #37c0cd;"></span></td>
+              <td><span class="highlight-active">13 px (9+2+2)</span></td>
+              <td><span class="val-petr">13 px (9+2+2)</span></td>
+              <td><span class="val-orig">7 px (5+1+1)</span></td>
+              <td>
+                <span class="lang-cs">Azurová s tyrkysovým lemem</span>
+                <span class="lang-en">Cyan with teal border</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x12</span></td>
+              <td>
+                <span class="lang-cs">Silnice II. třídy</span>
+                <span class="lang-en">Secondary Road</span>
+              </td>
+              <td><span class="preview-bar" style="height: 12px; background: #75effa; border: 2px solid #37c0cd;"></span></td>
+              <td><span class="highlight-active">12 px (8+2+2)</span></td>
+              <td><span class="val-petr">6 px (4+1+1)</span></td>
+              <td><span class="val-orig">4 px (2+1+1)</span></td>
+              <td>
+                <span class="lang-cs">Azurová s tyrkysovým lemem</span>
+                <span class="lang-en">Cyan with teal border</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x03</span></td>
+              <td>
+                <span class="lang-cs">Silnice I. třídy</span>
+                <span class="lang-en">Principal Highway</span>
+              </td>
+              <td><span class="preview-bar" style="height: 13px; background: #78ccff; border: 2px solid #41a5e8;"></span></td>
+              <td><span class="highlight-active">13 px (9+2+2)</span></td>
+              <td><span class="val-petr">14 px (10+2+2)</span></td>
+              <td><span class="val-orig">7 px (5+1+1)</span></td>
+              <td>
+                <span class="lang-cs">Modrá s tmavomodrým lemem</span>
+                <span class="lang-en">Blue with navy border</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x01</span></td>
+              <td>
+                <span class="lang-cs">Dálnice / Rychlostní silnice</span>
+                <span class="lang-en">Motorway / Trunk</span>
+              </td>
+              <td><span class="preview-bar" style="height: 14px; background: #8bffbd; border: 2px solid #009500;"></span></td>
+              <td><span class="highlight-active">14 px (10+2+2)</span></td>
+              <td><span class="val-petr">15 px (11+2+2)</span></td>
+              <td><span class="val-orig">8 px (4+2+2)</span></td>
+              <td>
+                <span class="lang-cs">Mátová s tmavozeleným lemem</span>
+                <span class="lang-en">Mint green with dark green border</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x100/0x13</span></td>
+              <td>
+                <span class="lang-cs">Dálnice / Rychlostní silnice (alt)</span>
+                <span class="lang-en">Motorway / Trunk (alt)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 9px; background: #8bffbd; border: 2px solid #009500;"></span></td>
+              <td><span class="highlight-active">9 px (5+2+2)</span></td>
+              <td><span class="val-petr">9 px (5+2+2)</span></td>
+              <td><span class="val-orig">7 px (3+2+2)</span></td>
+              <td>
+                <span class="lang-cs">Mátová s tmavozeleným lemem</span>
+                <span class="lang-en">Mint green with dark green border</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x10</span></td>
+              <td>
+                <span class="lang-cs">Vedlejší zpevněná silnice</span>
+                <span class="lang-en">Minor Paved Road</span>
+              </td>
+              <td><span class="preview-bar" style="height: 9px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
+              <td><span class="highlight-active">9 px (7+1+1)</span></td>
+              <td><span class="val-petr">11 px (7+2+2)</span></td>
+              <td><span class="val-orig">4 px (2+1+1)</span></td>
+              <td>
+                <span class="lang-cs">Bílá s břidlicovým lemem</span>
+                <span class="lang-en">White with dark slate border</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x100</span></td>
+              <td>
+                <span class="lang-cs">Vedlejší zpevněná silnice (alt)</span>
+                <span class="lang-en">Minor Paved Road (alt)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 4px; background: #5d7d88;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">4 px plná</span>
+                  <span class="lang-en">4 px solid</span>
+                </span>
+              </td>
+              <td>4 px solid</td>
+              <td><span class="val-orig">2 px</span></td>
+              <td>
+                <span class="lang-cs">Plná tmavá břidlice</span>
+                <span class="lang-en">Solid dark slate</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x07</span></td>
+              <td>
+                <span class="lang-cs">Účelová komunikace / obslužná cesta</span>
+                <span class="lang-en">Service Road</span>
+              </td>
+              <td><span class="preview-bar" style="height: 3px; background: #5d7d88;"></span></td>
+              <td>
+                <span class="highlight-active">
+                  <span class="lang-cs">3 px plná</span>
+                  <span class="lang-en">3 px solid</span>
+                </span>
+              </td>
+              <td>2 px solid</td>
+              <td><span class="val-orig">3 px</span></td>
+              <td>
+                <span class="lang-cs">Plná tmavá břidlice</span>
+                <span class="lang-en">Solid dark slate</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 4. Marked Tourist & MTB Trails -->
+      <h3>
+        <span class="lang-cs">🥾 4. Pěší turistické značení (KČT) a MTB trasy</span>
+        <span class="lang-en">🥾 4. Czech Marked Tourist Trails (KČT) &amp; MTB</span>
+      </h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <span class="lang-cs">Kód typu</span>
+                <span class="lang-en">Type Code</span>
+              </th>
+              <th>
+                <span class="lang-cs">Kategorie trasy</span>
+                <span class="lang-en">Trail Category</span>
+              </th>
+              <th>
+                <span class="lang-cs">Vizuální náhled</span>
+                <span class="lang-en">Visual Preview</span>
+              </th>
+              <th>
+                <span class="lang-cs">Bazinac Mod v1 (Aktivní)</span>
+                <span class="lang-en">Bazinac Mod v1 (Active)</span>
+              </th>
+              <th>Petr V4</th>
+              <th>
+                <span class="lang-cs">Původní Gravelista</span>
+                <span class="lang-en">Original Gravelista</span>
+              </th>
+              <th>
+                <span class="lang-cs">Barevný pás</span>
+                <span class="lang-en">Color</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="code-tag">0x10e/0x04</span></td>
+              <td>
+                <span class="lang-cs">KČT Červená značka</span>
+                <span class="lang-en">KČT Červená (Red Trail)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 14px; background: #ff0000; opacity: 0.85;"></span></td>
+              <td><span class="highlight-active">14 px</span></td>
+              <td><span class="val-petr">14 px</span></td>
+              <td><span class="val-orig">14 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#ff0000;"></span><span class="lang-cs">Červený pás</span><span class="lang-en">Red ribbon</span></span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x10e/0x05</span></td>
+              <td>
+                <span class="lang-cs">KČT Modrá značka</span>
+                <span class="lang-en">KČT Modrá (Blue Trail)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 14px; background: #0000ff; opacity: 0.85;"></span></td>
+              <td><span class="highlight-active">14 px</span></td>
+              <td><span class="val-petr">14 px</span></td>
+              <td><span class="val-orig">14 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#0000ff;"></span><span class="lang-cs">Modrý pás</span><span class="lang-en">Blue ribbon</span></span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x10e/0x06</span></td>
+              <td>
+                <span class="lang-cs">KČT Zelená značka</span>
+                <span class="lang-en">KČT Zelená (Green Trail)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 14px; background: #00ff00; opacity: 0.85;"></span></td>
+              <td><span class="highlight-active">14 px</span></td>
+              <td><span class="val-petr">14 px</span></td>
+              <td><span class="val-orig">14 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#00ff00;"></span><span class="lang-cs">Zelený pás</span><span class="lang-en">Green ribbon</span></span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x10e/0x07</span></td>
+              <td>
+                <span class="lang-cs">KČT Žlutá značka</span>
+                <span class="lang-en">KČT Žlutá (Yellow Trail)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 14px; background: #20caff; opacity: 0.85;"></span></td>
+              <td><span class="highlight-active">14 px</span></td>
+              <td><span class="val-petr">14 px</span></td>
+              <td><span class="val-orig">14 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#20caff;"></span><span class="lang-cs">Žlutá / Zlatá</span><span class="lang-en">Yellow / Gold</span></span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x10e/0x08</span></td>
+              <td>
+                <span class="lang-cs">KČT Černá značka</span>
+                <span class="lang-en">KČT Černá (Black Trail)</span>
+              </td>
+              <td><span class="preview-bar" style="height: 14px; background: #000000; border: 1px solid #475569;"></span></td>
+              <td><span class="highlight-active">14 px</span></td>
+              <td><span class="val-petr">14 px</span></td>
+              <td><span class="val-orig">14 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#000000;"></span><span class="lang-cs">Černý pás</span><span class="lang-en">Black ribbon</span></span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">0x31</span></td>
+              <td>
+                <span class="lang-cs">MTB trasa</span>
+                <span class="lang-en">MTB Route</span>
+              </td>
+              <td><span class="preview-bar" style="height: 9px; background: #00ff39;"></span></td>
+              <td><span class="highlight-active">9 px</span></td>
+              <td><span class="val-petr">9 px</span></td>
+              <td><span class="val-orig">9 px</span></td>
+              <td><span class="color-swatch"><span class="swatch-box" style="background:#00ff39;"></span><span class="lang-cs">Jasně zelená</span><span class="lang-en">Bright Green</span></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Instructions Card -->
+    <div class="card">
+      <h2>
+        <span class="lang-cs">🛠️ Návod k použití a instalace</span>
+        <span class="lang-en">🛠️ Working Instructions &amp; How-To</span>
+      </h2>
+      
+      <h3>
+        <span class="lang-cs">Možnost A: Rychlá instalace do Garmin Edge (Doporučeno)</span>
+        <span class="lang-en">Option A: Quick Installation on Garmin Edge (Recommended)</span>
+      </h3>
+      <ol class="steps-list lang-cs">
+        <li>Stáhněte soubor <code>GravelistaCZ_CE_c2607_Bazinac_mod_v1.img</code> pomocí tlačítka přímého stažení Cloudflare R2 výše.</li>
+        <li>Připojte svůj Garmin Edge (850 / 1050 / 1060) k počítači USB kabelem.</li>
+        <li>Otevřete disk zařízení ve správci souborů a přejděte do složky <code>/Garmin</code>.</li>
+        <li>Zkopírujte stažený soubor <code>.img</code> do složky <code>/Garmin</code>.</li>
+        <li>Zařízení bezpečně odpojte (vysuňte), zapněte Edge a aktivujte mapu v menu: <em>Profil aktivity &rarr; Navigace &rarr; Mapa &rarr; Informace o mapě</em>.</li>
+      </ol>
+      <ol class="steps-list lang-en">
+        <li>Download <code>GravelistaCZ_CE_c2607_Bazinac_mod_v1.img</code> via the direct Cloudflare R2 download button above.</li>
+        <li>Connect your Garmin Edge (850 / 1050 / 1060) to your computer via USB cable.</li>
+        <li>Open the device drive in your file manager and navigate to the <code>/Garmin</code> folder.</li>
+        <li>Copy the <code>.img</code> file into the <code>/Garmin</code> folder.</li>
+        <li>Safely eject your device, boot your Edge, and enable the map under <em>Activity Profile &rarr; Navigation &rarr; Map &rarr; Map Information</em>.</li>
+      </ol>
+
+      <h3>
+        <span class="lang-cs">Možnost B: Kompilace a vlastní úpravy stylů TYP (Pokročilé)</span>
+        <span class="lang-en">Option B: Compiling &amp; Customizing TYP Styles (Advanced)</span>
+      </h3>
+      <p class="lang-cs">Pokud si chcete upravit šířky linek nebo přizpůsobit jiné podkladové mapy:</p>
+      <p class="lang-en">If you wish to modify widths or adapt other base maps:</p>
+      
+      <div class="lang-cs">
+        <pre><code># 1. Upravte rozměry ve slovníku 'mods' ve skriptu:
+nano modify_typ.py
+
+# 2. Překompilujte vlastní styl TYP:
+python3 modify_typ.py
+
+# 3. Vložte zkompilovaný styl do mapového kontejneru:
+./gmt -w -x STYLE_BAZINAC_V1.typ GravelistaCZ_CE_c2607_Bazinac_mod_v1.img
+
+# 4. Ověřte vložení podsouboru a správnost FID/PID:
+./gmt -i GravelistaCZ_CE_c2607_Bazinac_mod_v1.img | tail -n 10</code></pre>
+      </div>
+      <div class="lang-en">
+        <pre><code># 1. Edit dimensions in the 'mods' dictionary:
+nano modify_typ.py
+
+# 2. Recompile your custom TYP style:
+python3 modify_typ.py
+
+# 3. Inject the compiled TYP file into your map image container:
+./gmt -w -x STYLE_BAZINAC_V1.typ GravelistaCZ_CE_c2607_Bazinac_mod_v1.img
+
+# 4. Verify subfile injection and FID/PID integrity:
+./gmt -i GravelistaCZ_CE_c2607_Bazinac_mod_v1.img | tail -n 10</code></pre>
+      </div>
+    </div>
+
+    <!-- Repository File Inventory -->
+    <div class="card">
+      <h2>
+        <span class="lang-cs">📂 Přehled souborů v repozitáři</span>
+        <span class="lang-en">📂 Repository File Inventory</span>
+      </h2>
+      <p class="lang-cs">Zdrojové kódy, skripty a styly jsou verzovány na GitHubu: <a href="https://github.com/bazinac/gravel_maps_mod" target="_blank" rel="noopener noreferrer"><strong>github.com/bazinac/gravel_maps_mod</strong></a>.</p>
+      <p class="lang-en">Source code, build scripts, and stylesheets are hosted on GitHub: <a href="https://github.com/bazinac/gravel_maps_mod" target="_blank" rel="noopener noreferrer"><strong>github.com/bazinac/gravel_maps_mod</strong></a>.</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <span class="lang-cs">Název souboru</span>
+                <span class="lang-en">File Name</span>
+              </th>
+              <th>
+                <span class="lang-cs">Typ</span>
+                <span class="lang-en">Type</span>
+              </th>
+              <th>
+                <span class="lang-cs">Popis / Účel</span>
+                <span class="lang-en">Description / Purpose</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>Gravelista_Bazinac_Map_Summary.html</code></td>
+              <td>
+                <span class="lang-cs">Dokumentace</span>
+                <span class="lang-en">Documentation</span>
+              </td>
+              <td>
+                <span class="lang-cs">Kompletní vizuální průvodce, specifikace stylů a portál ke stažení (symlinkován jako <code>index.html</code> pro GitHub Pages).</span>
+                <span class="lang-en">Complete visual guide, style specification, and download portal (symlinked as <code>index.html</code> for GitHub Pages).</span>
+              </td>
+            </tr>
+            <tr>
+              <td><code>modify_typ.py</code></td>
+              <td>
+                <span class="lang-cs">Python skript</span>
+                <span class="lang-en">Python Script</span>
+              </td>
+              <td>
+                <span class="lang-cs">Binární parser a kompilátor, který přepočítává hlavičky, posuny a rastry linií Garmin TYP.</span>
+                <span class="lang-en">Binary parser and compiler that recalculates Garmin line headers, offsets, and bitmaps.</span>
+              </td>
+            </tr>
+            <tr>
+              <td><code>STYLE_BAZINAC_V1.typ</code></td>
+              <td>
+                <span class="lang-cs">Garmin styl (TYP)</span>
+                <span class="lang-en">Garmin Style (TYP)</span>
+              </td>
+              <td>
+                <span class="lang-cs"><strong>Aktivní Bazinac Mod v1</strong> zkompilovaný binární styl (34 631 bajtů).</span>
+                <span class="lang-en"><strong>Active Bazinac Mod v1</strong> compiled style binary (34,631 bytes).</span>
+              </td>
+            </tr>
+            <tr>
+              <td><code>STYLE_PETR_V4.typ</code></td>
+              <td>
+                <span class="lang-cs">Garmin styl (TYP)</span>
+                <span class="lang-en">Garmin Style (TYP)</span>
+              </td>
+              <td>
+                <span class="lang-cs">Referenční styl TYP od Petra (V4) s 3px asfaltovým profilem (34 623 bajtů).</span>
+                <span class="lang-en">Reference TYP stylesheet from Petr (V4) with 3 px paved profile (34,623 bytes).</span>
+              </td>
+            </tr>
+            <tr>
+              <td><code>STYLE_original.typ</code></td>
+              <td>
+                <span class="lang-cs">Garmin styl (TYP)</span>
+                <span class="lang-en">Garmin Style (TYP)</span>
+              </td>
+              <td>
+                <span class="lang-cs">Původní nezměněný styl TYP extrahovaný z GravelistaCZ (34 511 bajtů).</span>
+                <span class="lang-en">Untouched original base TYP extracted from GravelistaCZ (34,511 bytes).</span>
+              </td>
+            </tr>
+            <tr>
+              <td><code>STYLE.TYP</code></td>
+              <td>
+                <span class="lang-cs">Garmin styl (TYP)</span>
+                <span class="lang-en">Garmin Style (TYP)</span>
+              </td>
+              <td>
+                <span class="lang-cs">Výchozí výstupní soubor používaný pro příkazy vložení GMT.</span>
+                <span class="lang-en">Default output used for GMT injection commands.</span>
+              </td>
+            </tr>
+            <tr>
+              <td><code>gmt</code></td>
+              <td>
+                <span class="lang-cs">Wrapper nástroje CLI</span>
+                <span class="lang-en">CLI Tool Wrapper</span>
+              </td>
+              <td>
+                <span class="lang-cs">Wrapper skript pro nástroj GMapTool na manipulaci s mapami Garmin.</span>
+                <span class="lang-en">Wrapper script for GMapTool map manipulation.</span>
+              </td>
+            </tr>
+            <tr>
+              <td><code>.gitignore</code></td>
+              <td>
+                <span class="lang-cs">Konfigurace Git</span>
+                <span class="lang-en">Git Config</span>
+              </td>
+              <td>
+                <span class="lang-cs">Vylučuje velké <code>.img</code> soubory a systémová metadata ze správy verzí Git.</span>
+                <span class="lang-en">Excludes large <code>.img</code> binaries and OS metadata from git tracking.</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer>
+      <div class="lang-cs">GravelistaCZ Custom Garmin Edition &bull; Bazinac Mod v1 &bull; Optimalizováno pro Garmin Edge 850 / 1050 / 1060 &bull; <a href="https://github.com/bazinac/gravel_maps_mod" target="_blank" rel="noopener noreferrer">GitHub Repozitář</a> &bull; Listopad 2026</div>
+      <div class="lang-en">GravelistaCZ Custom Garmin Edition &bull; Bazinac Mod v1 &bull; Optimized for Garmin Edge 850 / 1050 / 1060 &bull; <a href="https://github.com/bazinac/gravel_maps_mod" target="_blank" rel="noopener noreferrer">GitHub Repository</a> &bull; November 2026</div>
+    </footer>
+
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      if (lang !== 'cs' && lang !== 'en') lang = 'cs';
+      document.documentElement.lang = lang;
+      try {
+        localStorage.setItem('gravelista_lang', lang);
+      } catch (e) {}
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', '#' + lang);
+      }
+    }
+
+    // Auto-detect preferred language
+    (function initLanguage() {
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+      let saved = null;
+      try {
+        saved = localStorage.getItem('gravelista_lang');
+      } catch (e) {}
+
+      let lang = 'cs'; // Default to Czech for Gravelista audience
+      if (hash === 'en' || hash === 'cs') {
+        lang = hash;
+      } else if (saved === 'en' || saved === 'cs') {
+        lang = saved;
+      } else {
+        const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (navLang.startsWith('cs') || navLang.startsWith('sk')) {
+          lang = 'cs';
+        } else {
+          lang = 'en';
+        }
+      }
+      setLanguage(lang);
+    })();
+  </script>
+
+</body>
+</html>
