@@ -599,7 +599,7 @@
             <span class="lang-cs">📦 Hotový mapový kontejner k instalaci</span>
             <span class="lang-en">📦 Ready-to-Install Map Container</span>
           </div>
-          <div class="download-file-tag">GravelistaCZ_CE_c2607_Bazinac_mod_v1.img (~3.98 GB)</div>
+          <div class="download-file-tag">GravelistaCZ_CE_c2607_Bazinac_mod_v2.img (~3.98 GB)</div>
           
           <p class="lang-cs">
             Kompletní předkompilovaný mapový kontejner pro střední Evropu se zabudovaným stylem <strong>Bazinac Mod v2</strong>. Stačí stáhnout a zkopírovat do složky <code>/Garmin</code> ve vaší navigaci Garmin Edge přes USB.
@@ -618,7 +618,7 @@
 
         <div>
           <!-- CLOUDFLARE R2 PUBLIC LINK -->
-          <a href="https://pub-d6fd84d7c2d3433db3bcc0bc9220ef09.r2.dev/GravelistaCZ_CE_c2607_Bazinac_mod_v1.img" target="_blank" rel="noopener noreferrer" class="download-btn">
+          <a href="https://pub-d6fd84d7c2d3433db3bcc0bc9220ef09.r2.dev/GravelistaCZ_CE_c2607_Bazinac_mod_v2.img" target="_blank" rel="noopener noreferrer" class="download-btn">
             <span class="lang-cs">📥 Přímé stažení (Cloudflare R2)</span>
             <span class="lang-en">📥 Direct Download (Cloudflare R2)</span>
           </a>
@@ -1435,14 +1435,14 @@
         <span class="lang-en">Option A: Quick Installation on Garmin Edge (Recommended)</span>
       </h3>
       <ol class="steps-list lang-cs">
-        <li>Stáhněte soubor <code>GravelistaCZ_CE_c2607_Bazinac_mod_v1.img</code> pomocí tlačítka přímého stažení Cloudflare R2 výše.</li>
+        <li>Stáhněte soubor <code>GravelistaCZ_CE_c2607_Bazinac_mod_v2.img</code> pomocí tlačítka přímého stažení Cloudflare R2 výše.</li>
         <li>Připojte svůj Garmin Edge (850 / 1050 / 1060) k počítači USB kabelem.</li>
         <li>Otevřete disk zařízení ve správci souborů a přejděte do složky <code>/Garmin</code>.</li>
         <li>Zkopírujte stažený soubor <code>.img</code> do složky <code>/Garmin</code>.</li>
         <li>Zařízení bezpečně odpojte (vysuňte), zapněte Edge a aktivujte mapu v menu: <em>Profil aktivity &rarr; Navigace &rarr; Mapa &rarr; Informace o mapě</em>.</li>
       </ol>
       <ol class="steps-list lang-en">
-        <li>Download <code>GravelistaCZ_CE_c2607_Bazinac_mod_v1.img</code> via the direct Cloudflare R2 download button above.</li>
+        <li>Download <code>GravelistaCZ_CE_c2607_Bazinac_mod_v2.img</code> via the direct Cloudflare R2 download button above.</li>
         <li>Connect your Garmin Edge (850 / 1050 / 1060) to your computer via USB cable.</li>
         <li>Open the device drive in your file manager and navigate to the <code>/Garmin</code> folder.</li>
         <li>Copy the <code>.img</code> file into the <code>/Garmin</code> folder.</li>
@@ -1464,10 +1464,10 @@ nano modify_typ.py
 python3 modify_typ.py
 
 # 3. Vložte zkompilovaný styl do mapového kontejneru:
-./gmt -w -x STYLE_BAZINAC_V1.typ GravelistaCZ_CE_c2607_Bazinac_mod_v1.img
+./gmt -w -x STYLE_BAZINAC_V2.typ GravelistaCZ_CE_c2607_Bazinac_mod_v2.img
 
 # 4. Ověřte vložení podsouboru a správnost FID/PID:
-./gmt -i GravelistaCZ_CE_c2607_Bazinac_mod_v1.img | tail -n 10</code></pre>
+./gmt -i GravelistaCZ_CE_c2607_Bazinac_mod_v2.img | tail -n 10</code></pre>
       </div>
       <div class="lang-en">
         <pre><code># 1. Edit dimensions in the 'mods' dictionary:
@@ -1477,10 +1477,10 @@ nano modify_typ.py
 python3 modify_typ.py
 
 # 3. Inject the compiled TYP file into your map image container:
-./gmt -w -x STYLE_BAZINAC_V1.typ GravelistaCZ_CE_c2607_Bazinac_mod_v1.img
+./gmt -w -x STYLE_BAZINAC_V2.typ GravelistaCZ_CE_c2607_Bazinac_mod_v2.img
 
 # 4. Verify subfile injection and FID/PID integrity:
-./gmt -i GravelistaCZ_CE_c2607_Bazinac_mod_v1.img | tail -n 10</code></pre>
+./gmt -i GravelistaCZ_CE_c2607_Bazinac_mod_v2.img | tail -n 10</code></pre>
       </div>
     </div>
 
