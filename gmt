@@ -1,1 +1,12 @@
-/opt/homebrew/bin/gmt
+#!/usr/bin/env bash
+# GMapTool runner
+if [ -x /opt/homebrew/bin/gmt ]; then
+  exec /opt/homebrew/bin/gmt "$@"
+elif command -v gmt >/dev/null 2>&1 && [ "$(type -p gmt)" != "$0" ]; then
+  exec gmt "$@"
+elif [ -x "$(dirname "$0")/gmt.macho32" ]; then
+  exec "$(dirname "$0")/gmt.macho32" "$@"
+else
+  echo "Error: GMapTool (gmt) not found. See documentation for installation." >&2
+  exit 1
+fi
