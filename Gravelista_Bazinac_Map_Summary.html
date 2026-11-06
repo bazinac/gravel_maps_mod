@@ -533,6 +533,78 @@
         justify-content: center;
       }
     }
+
+    /* Changelog Timeline */
+    .timeline {
+      position: relative;
+      margin: 1.5rem 0 1rem 0.5rem;
+      padding-left: 2rem;
+      border-left: 2px solid rgba(52, 211, 153, 0.3);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 0.5rem;
+    }
+    .timeline-badge {
+      position: absolute;
+      left: -2.6rem;
+      top: 0.2rem;
+      width: 1.15rem;
+      height: 1.15rem;
+      border-radius: 50%;
+      background: var(--forest-green);
+      border: 3px solid var(--deep-charcoal);
+      box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.4);
+    }
+    .timeline-badge.past {
+      background: #64748b;
+      box-shadow: 0 0 0 2px rgba(100, 116, 139, 0.3);
+    }
+    .timeline-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-version {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .timeline-date {
+      font-size: 0.85rem;
+      color: var(--trail-sand);
+    }
+    .timeline-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      background: rgba(52, 211, 153, 0.2);
+      color: var(--forest-green);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+    .timeline-changes {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.4rem;
+    }
+    .timeline-changes li {
+      font-size: 0.95rem;
+      color: var(--trail-sand);
+      line-height: 1.5;
+    }
+    .timeline-changes li strong {
+      color: #f1f5f9;
+    }
   </style>
 </head>
 <body>
@@ -564,8 +636,8 @@
 
       <div class="meta-badges">
         <span class="badge badge-accent">
-          <span class="lang-cs">Vydání: Bazinac Mod v2</span>
-          <span class="lang-en">Release: Bazinac Mod v2</span>
+          <span class="lang-cs">Vydání: Bazinac Mod v4</span>
+          <span class="lang-en">Release: Bazinac Mod v4</span>
         </span>
         <span class="badge badge-gold">
           <span class="lang-cs">Cílová zařízení: Garmin Edge 850 / 1050 / 1060</span>
@@ -599,13 +671,13 @@
             <span class="lang-cs">📦 Hotový mapový kontejner k instalaci</span>
             <span class="lang-en">📦 Ready-to-Install Map Container</span>
           </div>
-          <div class="download-file-tag">GravelistaCZ_CE_c2607_Bazinac_mod_v2.img (~3.98 GB)</div>
+          <div class="download-file-tag">GravelistaCZ_CE_c2607_Bazinac_mod_v4.img (~3.98 GB)</div>
           
           <p class="lang-cs">
-            Kompletní předkompilovaný mapový kontejner pro střední Evropu se zabudovaným stylem <strong>Bazinac Mod v2</strong>. Stačí stáhnout a zkopírovat do složky <code>/Garmin</code> ve vaší navigaci Garmin Edge přes USB.
+            Kompletní předkompilovaný mapový kontejner pro střední Evropu se zabudovaným stylem <strong>Bazinac Mod v4</strong>. Stačí stáhnout a zkopírovat do složky <code>/Garmin</code> ve vaší navigaci Garmin Edge přes USB.
           </p>
           <p class="lang-en">
-            Complete pre-compiled Central Europe map container with <strong>Bazinac Mod v2</strong> style embedded. Simply download and copy into the <code>/Garmin</code> folder on your Garmin Edge device via USB.
+            Complete pre-compiled Central Europe map container with <strong>Bazinac Mod v4</strong> style embedded. Simply download and copy into the <code>/Garmin</code> folder on your Garmin Edge device via USB.
           </p>
 
           <div class="download-note lang-cs">
@@ -618,7 +690,7 @@
 
         <div>
           <!-- CLOUDFLARE R2 PUBLIC LINK -->
-          <a href="https://pub-d6fd84d7c2d3433db3bcc0bc9220ef09.r2.dev/GravelistaCZ_CE_c2607_Bazinac_mod_v2.img" target="_blank" rel="noopener noreferrer" class="download-btn">
+          <a href="https://pub-d6fd84d7c2d3433db3bcc0bc9220ef09.r2.dev/GravelistaCZ_CE_c2607_Bazinac_mod_v4.img" target="_blank" rel="noopener noreferrer" class="download-btn">
             <span class="lang-cs">📥 Přímé stažení (Cloudflare R2)</span>
             <span class="lang-en">📥 Direct Download (Cloudflare R2)</span>
           </a>
@@ -641,12 +713,12 @@
           Původní vestavěný styl Garminu (<code>STYLE_original.typ</code>) však vykresluje řadu silnic a stezek jako tenké <strong>2–4 px linky</strong>. Na moderních displejích s vysokou hustotou pixelů (high-DPI) u nových cyklopočítačů <strong>Garmin Edge 850, 1050 a 1060</strong> jsou tyto vlasové linky na přímém slunci a při vibracích v terénu takřka nečitelné. Naopak některé agresivní úpravy (např. starší profily Petra) zvětšily běžné ulice až na <strong>11–15 px</strong>, což v hustší zástavbě slévá ulice do jednolité barevné hmoty a překrývá fialovou navigační trasu Garminu.
         </p>
         <p>
-          <strong>Bazinac Mod v2</strong> přináší ideálně vyváženou vizuální hierarchii ušitou na míru gravelistům, bikepackerům i silničním jezdcům:
+          <strong>Bazinac Mod v4</strong> přináší ideálně vyváženou vizuální hierarchii ušitou na míru gravelistům, bikepackerům i silničním jezdcům:
         </p>
         <ul class="steps-list">
           <li><strong>Zřetelný gravel a stezky:</strong> Lesní šotoliny, zpevněné cesty i singletracky přebírají osvědčený a čitelný 5px čárkovaný profil z profilu Petr (V4/V5).</li>
           <li><strong>Výrazné cyklotrasy:</strong> Samostatné cyklostezky, nezpevněné cyklotrasy i cyklozóny jasně vystupují v signální purpurové barvě při 6–7 px.</li>
-          <li><strong>Vyvážená silniční síť:</strong> Obytné ulice (9 px) i vedlejší silnice (10 px) jsou perfektně čitelné, ale nepřekrývají mapu v obcích a městech.</li>
+          <li><strong>Vyvážená silniční síť:</strong> Obytné ulice (11 px) i vedlejší silnice (11 px) jsou perfektně čitelné, ale nepřekrývají mapu v obcích a městech.</li>
           <li><strong>Zachované KČT turistické značky:</strong> Tradiční české pásové značení (červená, modrá, zelená, žlutá, černá) zůstává syté a průhledné při 14 px.</li>
         </ul>
       </div>
@@ -659,12 +731,12 @@
           However, the original embedded Garmin style (<code>STYLE_original.typ</code>) renders many roads and trails as fine <strong>2–4 px hairlines</strong>. On high-DPI, vivid sunlight screens found on the <strong>Garmin Edge 850, 1050, and 1060</strong>, these fine lines become nearly invisible under direct sun and trail vibration. Conversely, third-party aggressive modifications (like early Petr profiles) scaled vehicular streets up to <strong>11–15 px</strong>, causing dense town grids to blur into solid blocks of color and masking Garmin's active navigation route line.
         </p>
         <p>
-          <strong>Bazinac Mod v2</strong> delivers the ideal balanced visual hierarchy for gravel travelers, bikepackers, and road navigators:
+          <strong>Bazinac Mod v4</strong> delivers the ideal balanced visual hierarchy for gravel travelers, bikepackers, and road navigators:
         </p>
         <ul class="steps-list">
           <li><strong>Distinct Gravel &amp; Paths:</strong> Forestry gravel tracks, singletracks, and paths adopt Petr (V4/V5)'s proven, legible 5 px dashed profile.</li>
           <li><strong>Prominent Cycling Corridors:</strong> Dedicated cycleways, unpaved bikepaths, and cyclestreets pop out in signature magenta at 6–7 px.</li>
-          <li><strong>Balanced Road Grid:</strong> Residential streets (9 px) and minor roads (10 px) remain clearly distinct without overpowering town centers.</li>
+          <li><strong>Balanced Road Grid:</strong> Residential streets (11 px) and minor roads (11 px) remain clearly distinct without overpowering town centers.</li>
           <li><strong>Preserved Czech Tourist Ribbons:</strong> Traditional Czech KČT hiking trail marks (Red, Blue, Green, Yellow, Black) stay bold and transparent at 14 px.</li>
         </ul>
       </div>
@@ -748,8 +820,8 @@
                 <span class="lang-en">Original Visual</span>
               </th>
               <th>
-                <span class="lang-cs">Bazinac Mod v2 (Aktivní)</span>
-                <span class="lang-en">Bazinac Mod v2 (Active)</span>
+                <span class="lang-cs">Bazinac Mod v4 (Aktivní)</span>
+                <span class="lang-en">Bazinac Mod v4 (Active)</span>
               </th>
               <th class="col-petr-width">Petr V5</th>
               <th class="col-orig-width">
@@ -929,8 +1001,8 @@
                 <span class="lang-en">Original Visual</span>
               </th>
               <th>
-                <span class="lang-cs">Bazinac Mod v2 (Aktivní)</span>
-                <span class="lang-en">Bazinac Mod v2 (Active)</span>
+                <span class="lang-cs">Bazinac Mod v4 (Aktivní)</span>
+                <span class="lang-en">Bazinac Mod v4 (Active)</span>
               </th>
               <th class="col-petr-width">Petr V5</th>
               <th class="col-orig-width">
@@ -1007,13 +1079,13 @@
                 <span class="lang-cs">Pěšina (vjezd kol povolen)</span>
                 <span class="lang-en">Path (cycling allowed)</span>
               </td>
-              <td><span class="preview-bar" style="height: 3px; border-top: 1px dashed #5d7d88; border-bottom: 1px dashed #5d7d88;"></span></td>
+              <td><span class="preview-bar" style="height: 4px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
               <td class="col-petr-visual"><span class="preview-bar" style="height: 6px; border-top: 2px dashed #5d7d88; border-bottom: 2px dashed #5d7d88;"></span></td>
               <td class="col-orig-visual"><span class="preview-bar" style="height: 3px; border-top: 1px dashed #5d7d88; border-bottom: 1px dashed #5d7d88;"></span></td>
               <td>
                 <span class="highlight-active">
-                  <span class="lang-cs">3 px vzor</span>
-                  <span class="lang-en">3 px pattern</span>
+                  <span class="lang-cs">4 px vzor</span>
+                  <span class="lang-en">4 px pattern</span>
                 </span>
               </td>
               <td class="col-petr-width">6 px dashed</td>
@@ -1073,8 +1145,8 @@
                 <span class="lang-en">Original Visual</span>
               </th>
               <th>
-                <span class="lang-cs">Bazinac Mod v2 (Aktivní)</span>
-                <span class="lang-en">Bazinac Mod v2 (Active)</span>
+                <span class="lang-cs">Bazinac Mod v4 (Aktivní)</span>
+                <span class="lang-en">Bazinac Mod v4 (Active)</span>
               </th>
               <th class="col-petr-width">Petr V5</th>
               <th class="col-orig-width">
@@ -1094,10 +1166,10 @@
                 <span class="lang-cs">Obytná ulice (místní komunikace)</span>
                 <span class="lang-en">Residential Street</span>
               </td>
-              <td><span class="preview-bar" style="height: 9px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
+              <td><span class="preview-bar" style="height: 11px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
               <td class="col-petr-visual"><span class="preview-bar" style="height: 11px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
               <td class="col-orig-visual"><span class="preview-bar" style="height: 5px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
-              <td><span class="highlight-active">9 px (5+2+2)</span></td>
+              <td><span class="highlight-active">11 px (7+2+2)</span></td>
               <td class="col-petr-width"><span class="val-petr">11 px (7+2+2)</span></td>
               <td class="col-orig-width"><span class="val-orig">5 px (3+1+1)</span></td>
               <td>
@@ -1111,10 +1183,10 @@
                 <span class="lang-cs">Silnice III. třídy</span>
                 <span class="lang-en">Tertiary Road</span>
               </td>
-              <td><span class="preview-bar" style="height: 12px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
+              <td><span class="preview-bar" style="height: 14px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
               <td class="col-petr-visual"><span class="preview-bar" style="height: 14px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
               <td class="col-orig-visual"><span class="preview-bar" style="height: 6px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
-              <td><span class="highlight-active">12 px (8+2+2)</span></td>
+              <td><span class="highlight-active">14 px (10+2+2)</span></td>
               <td class="col-petr-width"><span class="val-petr">14 px (10+2+2)</span></td>
               <td class="col-orig-width"><span class="val-orig">6 px (4+1+1)</span></td>
               <td>
@@ -1128,10 +1200,10 @@
                 <span class="lang-cs">Silnice III. třídy (alt)</span>
                 <span class="lang-en">Tertiary Road (alt)</span>
               </td>
-              <td><span class="preview-bar" style="height: 7px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
+              <td><span class="preview-bar" style="height: 10px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
               <td class="col-petr-visual"><span class="preview-bar" style="height: 7px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
               <td class="col-orig-visual"><span class="preview-bar" style="height: 4px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
-              <td><span class="highlight-active">7 px (5+1+1)</span></td>
+              <td><span class="highlight-active">10 px (6+2+2)</span></td>
               <td class="col-petr-width"><span class="val-petr">7 px (5+1+1)</span></td>
               <td class="col-orig-width"><span class="val-orig">4 px (2+1+1)</span></td>
               <td>
@@ -1145,10 +1217,10 @@
                 <span class="lang-cs">Silnice II. třídy (významná)</span>
                 <span class="lang-en">Secondary Highway</span>
               </td>
-              <td><span class="preview-bar" style="height: 14px; background: #faef75; border: 2px solid #cdc037;"></span></td>
+              <td><span class="preview-bar" style="height: 15px; background: #faef75; border: 2px solid #cdc037;"></span></td>
               <td class="col-petr-visual"><span class="preview-bar" style="height: 15px; background: #faef75; border: 2px solid #cdc037;"></span></td>
               <td class="col-orig-visual"><span class="preview-bar" style="height: 7px; background: #faef75; border: 1px solid #cdc037;"></span></td>
-              <td><span class="highlight-active">14 px (10+2+2)</span></td>
+              <td><span class="highlight-active">15 px (11+2+2)</span></td>
               <td class="col-petr-width"><span class="val-petr">15 px (11+2+2)</span></td>
               <td class="col-orig-width"><span class="val-orig">7 px (5+1+1)</span></td>
               <td>
@@ -1162,10 +1234,10 @@
                 <span class="lang-cs">Silnice II. třídy</span>
                 <span class="lang-en">Secondary Road</span>
               </td>
-              <td><span class="preview-bar" style="height: 13px; background: #faef75; border: 2px solid #cdc037;"></span></td>
+              <td><span class="preview-bar" style="height: 15px; background: #faef75; border: 2px solid #cdc037;"></span></td>
               <td class="col-petr-visual"><span class="preview-bar" style="height: 6px; background: #faef75; border: 1px solid #cdc037;"></span></td>
               <td class="col-orig-visual"><span class="preview-bar" style="height: 4px; background: #faef75; border: 1px solid #cdc037;"></span></td>
-              <td><span class="highlight-active">13 px (9+2+2)</span></td>
+              <td><span class="highlight-active">15 px (11+2+2)</span></td>
               <td class="col-petr-width"><span class="val-petr">6 px (4+1+1)</span></td>
               <td class="col-orig-width"><span class="val-orig">4 px (2+1+1)</span></td>
               <td>
@@ -1179,10 +1251,10 @@
                 <span class="lang-cs">Silnice I. třídy</span>
                 <span class="lang-en">Principal Highway</span>
               </td>
-              <td><span class="preview-bar" style="height: 13px; background: #ffcc78; border: 2px solid #e8a541;"></span></td>
+              <td><span class="preview-bar" style="height: 16px; background: #ffcc78; border: 2px solid #e8a541;"></span></td>
               <td class="col-petr-visual"><span class="preview-bar" style="height: 15px; background: #ffcc78; border: 2px solid #e8a541;"></span></td>
               <td class="col-orig-visual"><span class="preview-bar" style="height: 7px; background: #ffcc78; border: 1px solid #e8a541;"></span></td>
-              <td><span class="highlight-active">13 px (9+2+2)</span></td>
+              <td><span class="highlight-active">16 px (12+2+2)</span></td>
               <td class="col-petr-width"><span class="val-petr">15 px (11+2+2)</span></td>
               <td class="col-orig-width"><span class="val-orig">7 px (5+1+1)</span></td>
               <td>
@@ -1196,10 +1268,10 @@
                 <span class="lang-cs">Dálnice / Rychlostní silnice</span>
                 <span class="lang-en">Motorway / Trunk</span>
               </td>
-              <td><span class="preview-bar" style="height: 14px; background: #bdff8b; border: 2px solid #009500;"></span></td>
+              <td><span class="preview-bar" style="height: 16px; background: #bdff8b; border: 2px solid #009500;"></span></td>
               <td class="col-petr-visual"><span class="preview-bar" style="height: 15px; background: #bdff8b; border: 2px solid #009500;"></span></td>
               <td class="col-orig-visual"><span class="preview-bar" style="height: 8px; background: #bdff8b; border: 2px solid #009500;"></span></td>
-              <td><span class="highlight-active">14 px (10+2+2)</span></td>
+              <td><span class="highlight-active">16 px (12+2+2)</span></td>
               <td class="col-petr-width"><span class="val-petr">15 px (11+2+2)</span></td>
               <td class="col-orig-width"><span class="val-orig">8 px (4+2+2)</span></td>
               <td>
@@ -1230,10 +1302,10 @@
                 <span class="lang-cs">Vedlejší zpevněná silnice</span>
                 <span class="lang-en">Minor Paved Road</span>
               </td>
-              <td><span class="preview-bar" style="height: 10px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
+              <td><span class="preview-bar" style="height: 11px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
               <td class="col-petr-visual"><span class="preview-bar" style="height: 11px; background: #ffffff; border: 2px solid #5d7d88;"></span></td>
               <td class="col-orig-visual"><span class="preview-bar" style="height: 4px; background: #ffffff; border: 1px solid #5d7d88;"></span></td>
-              <td><span class="highlight-active">10 px (6+2+2)</span></td>
+              <td><span class="highlight-active">11 px (7+2+2)</span></td>
               <td class="col-petr-width"><span class="val-petr">11 px (7+2+2)</span></td>
               <td class="col-orig-width"><span class="val-orig">4 px (2+1+1)</span></td>
               <td>
@@ -1319,8 +1391,8 @@
                 <span class="lang-en">Original Visual</span>
               </th>
               <th>
-                <span class="lang-cs">Bazinac Mod v2 (Aktivní)</span>
-                <span class="lang-en">Bazinac Mod v2 (Active)</span>
+                <span class="lang-cs">Bazinac Mod v4 (Aktivní)</span>
+                <span class="lang-en">Bazinac Mod v4 (Active)</span>
               </th>
               <th class="col-petr-width">Petr V5</th>
               <th class="col-orig-width">
@@ -1423,6 +1495,92 @@
       </div>
     </div>
 
+    <!-- Changelog Card -->
+    <div class="card">
+      <h2>
+        <span class="lang-cs">📜 Historie verzí (Changelog)</span>
+        <span class="lang-en">📜 Version History (Changelog)</span>
+      </h2>
+      <p class="lang-cs">Přehled změn a evoluce stylu Bazinac Mod pro Garmin Edge cyklopočítače:</p>
+      <p class="lang-en">Overview of revisions and the visual evolution of Bazinac Mod for Garmin Edge:</p>
+
+      <div class="timeline">
+        <!-- v4.0 -->
+        <div class="timeline-item">
+          <div class="timeline-badge"></div>
+          <div class="timeline-header">
+            <span class="timeline-version">Bazinac Mod v4.0</span>
+            <span class="timeline-tag"><span class="lang-cs">Aktivní verze</span><span class="lang-en">Current Active</span></span>
+            <span class="timeline-date"><span class="lang-cs">Listopad 2026</span><span class="lang-en">November 2026</span></span>
+          </div>
+          <div class="lang-cs">
+            <ul class="timeline-changes">
+              <li><strong>Zvýšená čitelnost hlavní i lokální silniční sítě:</strong> Zesílení silnic pro bleskovou orientaci za ostrého slunce při rychlé jízdě na moderních high-DPI displejích Garmin Edge (850 / 1050 / 1060).</li>
+              <li><strong>Dálnice a silnice I. třídy (0x01 &amp; 0x03):</strong> Zvětšeno na <strong>16 px</strong> (12 px jádro + 2×2 px lem).</li>
+              <li><strong>Silnice II. třídy (0x04 &amp; 0x12):</strong> Sjednoceno na <strong>15 px</strong> (11 px jádro + 2×2 px lem) pro zřetelnou páteřní navigaci.</li>
+              <li><strong>Silnice III. třídy (0x05):</strong> Zvětšeno na <strong>14 px</strong> (10 px jádro + 2×2 px lem); doplňková varianta (0x100/0x01) zvětšena na <strong>10 px</strong>.</li>
+              <li><strong>Místní komunikace a obslužné silnice (0x06 &amp; 0x10):</strong> Zesíleno na <strong>11 px</strong> (7 px jádro + 2×2 px lem) pro přehledné průjezdy obcemi.</li>
+              <li><strong>Pěšina s povoleným vjezdem kol (0x0d):</strong> Zvýšena na <strong>4 px</strong> vzor (vyvážený kompromis mezi tenkou 3px linkou a mohutnou 6px čárou).</li>
+            </ul>
+          </div>
+          <div class="lang-en">
+            <ul class="timeline-changes">
+              <li><strong>High-Visibility Road Corridors:</strong> Enhanced contrast profile calibrated for immediate legibility in direct sunlight on high-DPI Edge 850 / 1050 / 1060 screens.</li>
+              <li><strong>Motorways &amp; Principal Highways (0x01 &amp; 0x03):</strong> Scaled up to <strong>16 px</strong> (12 px core + 2×2 px borders).</li>
+              <li><strong>Secondary Highways &amp; Roads (0x04 &amp; 0x12):</strong> Unified to <strong>15 px</strong> (11 px core + 2×2 px borders) for prominent thoroughfare routing.</li>
+              <li><strong>Tertiary Roads (0x05):</strong> Boosted to <strong>14 px</strong> (10 px core + 2×2 px borders); alternate variant (0x100/0x01) increased to <strong>10 px</strong>.</li>
+              <li><strong>Residential &amp; Minor Paved Streets (0x06 &amp; 0x10):</strong> Strengthened to <strong>11 px</strong> (7 px core + 2×2 px borders) for distinct town navigation.</li>
+              <li><strong>Path (cycling allowed) (0x0d):</strong> Increased to <strong>4 px</strong> pattern (the optimal sweet spot between thin 3 px and bulky 6 px).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v2.0 -->
+        <div class="timeline-item">
+          <div class="timeline-badge past"></div>
+          <div class="timeline-header">
+            <span class="timeline-version">Bazinac Mod v2.0</span>
+            <span class="timeline-date"><span class="lang-cs">Listopad 2026</span><span class="lang-en">November 2026</span></span>
+          </div>
+          <div class="lang-cs">
+            <ul class="timeline-changes">
+              <li><strong>Plynulá hierarchie s jednotným 2px lemem:</strong> Úprava silnic na stupňovitou škálu 14 px &rarr; 13 px &rarr; 12 px &rarr; 10 px &rarr; 9 px s ostrými kontrastními okraji.</li>
+              <li><strong>Zpřehlednění pěších tras:</strong> Zúžení chodníků na 2 px tečky (0x08), cyklopěšin na 3 px vzor (0x0d) a obslužných cest na 2 px (0x07) pro nerušené zobrazení gravelu.</li>
+            </ul>
+          </div>
+          <div class="lang-en">
+            <ul class="timeline-changes">
+              <li><strong>Stepwise Hierarchy with Uniform 2px Borders:</strong> Refined road widths (14 px &rarr; 13 px &rarr; 12 px &rarr; 10 px &rarr; 9 px) with crisp dark borders.</li>
+              <li><strong>De-cluttered Pathways:</strong> Scaled sidewalks to 2 px dots (0x08), cycling paths to 3 px (0x0d), and service roads to 2 px (0x07).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.0 -->
+        <div class="timeline-item">
+          <div class="timeline-badge past"></div>
+          <div class="timeline-header">
+            <span class="timeline-version">Bazinac Mod v1.0</span>
+            <span class="timeline-date"><span class="lang-cs">Listopad 2026</span><span class="lang-en">November 2026</span></span>
+          </div>
+          <div class="lang-cs">
+            <ul class="timeline-changes">
+              <li><strong>První vydání vlastního stylu:</strong> Vyřešení nečitelných tenkých vlasových linek originálního stylu Garmin (2–4 px) a odstranění přesycených 15px bloků ze starších komunitních úprav.</li>
+              <li><strong>Zvýraznění cyklistické infrastruktury:</strong> Samostatné cyklostezky, cyklozóny a pruhy v signální purpurové barvě při 6–7 px.</li>
+              <li><strong>Osvědčený gravel profil:</strong> Šotoliny a lesní cesty převzaty z profilu Petr V4 (5 px čárkovaná). Zachováno české turistické pásové značení KČT (14 px).</li>
+            </ul>
+          </div>
+          <div class="lang-en">
+            <ul class="timeline-changes">
+              <li><strong>Initial Release:</strong> Fixed unreadable 2–4 px hairlines from original Garmin maps without the urban bloat of early 15 px community mods.</li>
+              <li><strong>Vibrant Cycling Corridors:</strong> Dedicated cycleways and lanes in high-visibility magenta at 6–7 px.</li>
+              <li><strong>Proven Gravel &amp; KČT Trails:</strong> Adopted Petr V4's 5 px dashed gravel profile and retained 14 px Czech hiking markers.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Instructions Card -->
     <div class="card">
       <h2>
@@ -1435,14 +1593,14 @@
         <span class="lang-en">Option A: Quick Installation on Garmin Edge (Recommended)</span>
       </h3>
       <ol class="steps-list lang-cs">
-        <li>Stáhněte soubor <code>GravelistaCZ_CE_c2607_Bazinac_mod_v2.img</code> pomocí tlačítka přímého stažení Cloudflare R2 výše.</li>
+        <li>Stáhněte soubor <code>GravelistaCZ_CE_c2607_Bazinac_mod_v4.img</code> pomocí tlačítka přímého stažení Cloudflare R2 výše.</li>
         <li>Připojte svůj Garmin Edge (850 / 1050 / 1060) k počítači USB kabelem.</li>
         <li>Otevřete disk zařízení ve správci souborů a přejděte do složky <code>/Garmin</code>.</li>
         <li>Zkopírujte stažený soubor <code>.img</code> do složky <code>/Garmin</code>.</li>
         <li>Zařízení bezpečně odpojte (vysuňte), zapněte Edge a aktivujte mapu v menu: <em>Profil aktivity &rarr; Navigace &rarr; Mapa &rarr; Informace o mapě</em>.</li>
       </ol>
       <ol class="steps-list lang-en">
-        <li>Download <code>GravelistaCZ_CE_c2607_Bazinac_mod_v2.img</code> via the direct Cloudflare R2 download button above.</li>
+        <li>Download <code>GravelistaCZ_CE_c2607_Bazinac_mod_v4.img</code> via the direct Cloudflare R2 download button above.</li>
         <li>Connect your Garmin Edge (850 / 1050 / 1060) to your computer via USB cable.</li>
         <li>Open the device drive in your file manager and navigate to the <code>/Garmin</code> folder.</li>
         <li>Copy the <code>.img</code> file into the <code>/Garmin</code> folder.</li>
@@ -1464,10 +1622,10 @@ nano modify_typ.py
 python3 modify_typ.py
 
 # 3. Vložte zkompilovaný styl do mapového kontejneru:
-./gmt -w -x STYLE_BAZINAC_V2.typ GravelistaCZ_CE_c2607_Bazinac_mod_v2.img
+./gmt -w -x STYLE_BAZINAC_V4.typ GravelistaCZ_CE_c2607_Bazinac_mod_v4.img
 
 # 4. Ověřte vložení podsouboru a správnost FID/PID:
-./gmt -i GravelistaCZ_CE_c2607_Bazinac_mod_v2.img | tail -n 10</code></pre>
+./gmt -i GravelistaCZ_CE_c2607_Bazinac_mod_v4.img | tail -n 10</code></pre>
       </div>
       <div class="lang-en">
         <pre><code># 1. Edit dimensions in the 'mods' dictionary:
@@ -1477,10 +1635,10 @@ nano modify_typ.py
 python3 modify_typ.py
 
 # 3. Inject the compiled TYP file into your map image container:
-./gmt -w -x STYLE_BAZINAC_V2.typ GravelistaCZ_CE_c2607_Bazinac_mod_v2.img
+./gmt -w -x STYLE_BAZINAC_V4.typ GravelistaCZ_CE_c2607_Bazinac_mod_v4.img
 
 # 4. Verify subfile injection and FID/PID integrity:
-./gmt -i GravelistaCZ_CE_c2607_Bazinac_mod_v2.img | tail -n 10</code></pre>
+./gmt -i GravelistaCZ_CE_c2607_Bazinac_mod_v4.img | tail -n 10</code></pre>
       </div>
     </div>
 
@@ -1534,14 +1692,25 @@ python3 modify_typ.py
               </td>
             </tr>
             <tr>
+              <td><code>STYLE_BAZINAC_V4.typ</code></td>
+              <td>
+                <span class="lang-cs">Garmin styl (TYP)</span>
+                <span class="lang-en">Garmin Style (TYP)</span>
+              </td>
+              <td>
+                <span class="lang-cs"><strong>Aktivní Bazinac Mod v4</strong> zkompilovaný binární styl (34 615 bajtů).</span>
+                <span class="lang-en"><strong>Active Bazinac Mod v4</strong> compiled style binary (34,615 bytes).</span>
+              </td>
+            </tr>
+            <tr>
               <td><code>STYLE_BAZINAC_V2.typ</code></td>
               <td>
                 <span class="lang-cs">Garmin styl (TYP)</span>
                 <span class="lang-en">Garmin Style (TYP)</span>
               </td>
               <td>
-                <span class="lang-cs"><strong>Aktivní Bazinac Mod v2</strong> zkompilovaný binární styl (34 611 bajtů).</span>
-                <span class="lang-en"><strong>Active Bazinac Mod v2</strong> compiled style binary (34,611 bytes).</span>
+                <span class="lang-cs">Předchozí verze Bazinac Mod v2 (34 611 bajtů).</span>
+                <span class="lang-en">Previous version Bazinac Mod v2 (34,611 bytes).</span>
               </td>
             </tr>
             <tr>
@@ -1616,8 +1785,8 @@ python3 modify_typ.py
     </div>
 
     <footer>
-      <div class="lang-cs">GravelistaCZ Custom Garmin Edition &bull; Bazinac Mod v2 &bull; Optimalizováno pro Garmin Edge 850 / 1050 / 1060 &bull; <a href="https://github.com/bazinac/gravel_maps_mod" target="_blank" rel="noopener noreferrer">GitHub Repozitář</a> &bull; Listopad 2026</div>
-      <div class="lang-en">GravelistaCZ Custom Garmin Edition &bull; Bazinac Mod v2 &bull; Optimized for Garmin Edge 850 / 1050 / 1060 &bull; <a href="https://github.com/bazinac/gravel_maps_mod" target="_blank" rel="noopener noreferrer">GitHub Repository</a> &bull; November 2026</div>
+      <div class="lang-cs">GravelistaCZ Custom Garmin Edition &bull; Bazinac Mod v4 &bull; Optimalizováno pro Garmin Edge 850 / 1050 / 1060 &bull; <a href="https://github.com/bazinac/gravel_maps_mod" target="_blank" rel="noopener noreferrer">GitHub Repozitář</a> &bull; Listopad 2026</div>
+      <div class="lang-en">GravelistaCZ Custom Garmin Edition &bull; Bazinac Mod v4 &bull; Optimized for Garmin Edge 850 / 1050 / 1060 &bull; <a href="https://github.com/bazinac/gravel_maps_mod" target="_blank" rel="noopener noreferrer">GitHub Repository</a> &bull; November 2026</div>
     </footer>
 
   </div>

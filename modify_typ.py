@@ -16,7 +16,7 @@ def update_widths(input_path=None, output_path=None):
     if input_path is None:
         input_path = os.path.join(BASE_DIR, 'STYLE_original.typ')
     if output_path is None:
-        output_path = os.path.join(BASE_DIR, 'STYLE_BAZINAC_V2.typ')
+        output_path = os.path.join(BASE_DIR, 'STYLE_BAZINAC_V4.typ')
     
     with open(input_path, 'rb') as f:
         data = bytearray(f.read())
@@ -78,20 +78,20 @@ def update_widths(input_path=None, output_path=None):
         (0x0f, 0): {'lw': 3, 'total': 3},                                 # track road (gravel) (3px)
         (0x0a, 0): {'new_height': 5, 'pattern_mode': 'dash_5on3off'},     # path / singletrack (5px as Petr V4/V5)
         (0x15, 0): {'new_height': 5, 'pattern_mode': 'dash_5on3off'},     # track or path (5px as Petr V4/V5)
-        (0x0d, 0): {'new_height': 3, 'pattern_mode': 'orig_path_0d'},     # path (cycling allowed) (3px) [V2]
-        (0x08, 0): {'new_height': 2, 'pattern_mode': 'dots3'},            # pedestrian (2px) [V2]
+        (0x0d, 0): {'new_height': 4, 'pattern_mode': 'orig_path_0d'},     # path (cycling allowed) (4px) [V4]
+        (0x08, 0): {'new_height': 2, 'pattern_mode': 'dots3'},            # pedestrian (2px)
         
         # Category 3: General Roads
-        (0x01, 0): {'lw': 10, 'total': 14},                               # motorway, trunk (10+2=14px)
-        (0x03, 0): {'lw': 9, 'total': 13},                                # principal highway (9+2=13px)
-        (0x04, 0): {'lw': 10, 'total': 14},                               # secondary highway (10+2=14px) [V2]
-        (0x05, 0): {'lw': 8, 'total': 12},                                # tertiary road (8+2=12px) [V2]
-        (0x06, 0): {'lw': 5, 'total': 9},                                 # residential street (5+2+2=9px) [V2]
-        (0x07, 0): {'lw': 2, 'total': 2},                                 # service road (2px) [V2]
-        (0x10, 0): {'lw': 6, 'total': 10},                                # minor paved road (6+2=10px) [V2]
-        (0x12, 0): {'lw': 9, 'total': 13},                                # secondary road (9+2=13px) [V2]
+        (0x01, 0): {'lw': 12, 'total': 16},                               # motorway, trunk (12+2=16px) [V4]
+        (0x03, 0): {'lw': 12, 'total': 16},                               # principal highway (12+2=16px) [V4]
+        (0x04, 0): {'lw': 11, 'total': 15},                               # secondary highway (11+2=15px) [V4]
+        (0x05, 0): {'lw': 10, 'total': 14},                               # tertiary road (10+2=14px) [V4]
+        (0x06, 0): {'lw': 7, 'total': 11},                                # residential street (7+2=11px) [V4]
+        (0x07, 0): {'lw': 2, 'total': 2},                                 # service road (2px)
+        (0x10, 0): {'lw': 7, 'total': 11},                                # minor paved road (7+2=11px) [V4]
+        (0x12, 0): {'lw': 11, 'total': 15},                               # secondary road (11+2=15px) [V4]
         (0x100, 0): {'lw': 4, 'total': 4},                                # minor paved road alt (4px)
-        (0x100, 0x01): {'lw': 5, 'total': 7},                             # tertiary road alt (5+1=7px)
+        (0x100, 0x01): {'lw': 6, 'total': 10},                            # tertiary road alt (6+2=10px) [V4]
         (0x100, 0x13): {'lw': 5, 'total': 9},                             # motorway, trunk alt (5+2=9px)
         (0x101, 0x03): {'new_height': 8, 'pattern_mode': 'solid_border'}, # principal (8px)
         (0x101, 0x04): {'new_height': 8, 'pattern_mode': 'solid_border'}, # secondary (8px)
