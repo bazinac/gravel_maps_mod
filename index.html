@@ -209,6 +209,8 @@
       color: var(--forest-green);
       text-decoration: none;
       transition: color 0.15s ease;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     a:hover {
@@ -231,10 +233,17 @@
       align-items: center;
       justify-content: space-between;
       gap: 1.5rem;
+      width: 100%;
     }
 
     .download-details {
       max-width: 650px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .download-action {
+      flex-shrink: 0;
     }
 
     .download-title {
@@ -248,12 +257,16 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
       font-size: 0.9rem;
       background: rgba(0, 0, 0, 0.4);
-      padding: 0.25rem 0.6rem;
+      padding: 0.3rem 0.65rem;
       border-radius: 6px;
       color: var(--forest-green);
       border: 1px solid rgba(52, 211, 153, 0.2);
       display: inline-block;
       margin-bottom: 0.5rem;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .download-btn {
@@ -487,6 +500,13 @@
 
     code {
       font-family: inherit;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    pre code {
+      word-break: normal;
+      overflow-wrap: normal;
     }
 
     /* Steps list */
@@ -515,22 +535,46 @@
 
     @media (max-width: 768px) {
       body {
-        padding: 1.5rem 1rem;
+        padding: 1.25rem 0.85rem;
+      }
+      .card {
+        padding: 1.35rem 1rem;
+        border-radius: 12px;
       }
       .header-top {
         flex-direction: column;
         align-items: stretch;
+      }
+      h1 {
+        font-size: 1.75rem;
       }
       .lang-switcher {
         align-self: flex-start;
       }
       .download-content {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: 1.25rem;
+      }
+      .download-details {
+        max-width: 100%;
+        width: 100%;
+      }
+      .download-file-tag {
+        font-size: 0.82rem;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+      }
+      .download-action {
+        width: 100%;
       }
       .download-btn {
         width: 100%;
         justify-content: center;
+        padding: 0.85rem 1rem;
+        font-size: 0.95rem;
+        white-space: normal;
+        text-align: center;
       }
     }
 
@@ -688,7 +732,7 @@
           </div>
         </div>
 
-        <div>
+        <div class="download-action">
           <!-- CLOUDFLARE R2 PUBLIC LINK -->
           <a href="https://pub-d6fd84d7c2d3433db3bcc0bc9220ef09.r2.dev/GravelistaCZ_CE_c2607_Bazinac_mod_v4.img" target="_blank" rel="noopener noreferrer" class="download-btn">
             <span class="lang-cs">📥 Přímé stažení (Cloudflare R2)</span>
